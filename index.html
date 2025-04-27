@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initializing...</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header-typing-container">
+        <h1 class="header-typing-text">Loading...</h1>
+    </div>
+    <div class="background-gradient"></div>
+    <div class="loading-container">
+        <div class="circular-progress">
+            <div class="circle"></div>
+        </div>
+        <p class="typing-text">La la land mine</p>
+        <p class="wait-text">Initializing. Please wait <span id="countdown">60</span> seconds...</p>
+    </div>
+
+    <script>
+        const headerTypingElement = document.querySelector('.header-typing-text');
+        const headerFullText = headerTypingElement.textContent;
+        headerTypingElement.textContent = ''; // Clear initial header text
+        let headerCharIndex = 0;
+
+        function headerTypeWriter() {
+            if (headerCharIndex < headerFullText.length) {
+                headerTypingElement.textContent += headerFullText.charAt(headerCharIndex);
+                headerCharIndex++;
+                setTimeout(headerTypeWriter, 150); // Adjust header typing speed
+            }
+        }
+
+        headerTypeWriter(); // Start header typing animation
+
+        let countdown = 60;
+        const countdownDisplay = document.getElementById('countdown');
+        const loadingContainer = document.querySelector('.loading-container');
+        const typingTextElement = document.querySelector('.typing-text');
+        const fullText = typingTextElement.textContent;
+        typingTextElement.textContent = ''; // Clear the initial "la la land mine" text
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < fullText.length) {
+                typingTextElement.textContent += fullText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100); // Adjust typing speed
+            }
+        }
+
+        typeWriter(); // Start the "la la land mine" typing animation
+
+        const interval = setInterval(() => {
+            countdown--;
+            countdownDisplay.textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(interval);
+                window.location.href = 'dashboard.html'; // Redirect to dashboard after 60 seconds
+            }
+        }, 1000);
+
+        // Simulate the circular progress
+        const circle = document.querySelector('.circle');
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress++;
+            circle.style.background = `conic-gradient(
+                hsl(${progress * 3}, 100%, 50%) 0% ${progress}%,
+                transparent ${progress}% 100%
+            )`;
+            if (progress >= 100) {
+                clearInterval(progressInterval);
+                // Optionally, you can add a visual completion state here
+            }
+        }, 600); // Adjust timing for a 60-second fill
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: white;
+    min-height: 100vh;
+    background-color: #03172b; /* Deep dark blue - Firebase-like */
+    overflow: hidden; /* To contain the background effects */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.firebase-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind the content */
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: drift 15s linear infinite, pulse 3s ease-in-out infinite alternate;
+}
+
+.particle:nth-child(1) { top: 10%; left: 20%; width: 8px; height: 8px; background-color: #29abe2; } /* Light blue */
+.particle:nth-child(2) { top: 30%; left: 70%; width: 12px; height: 12px; background-color: #f7b03e; } /* Orange */
+.particle:nth-child(3) { top: 60%; left: 10%; width: 6px; height: 6px; background-color: #29abe2; }
+.particle:nth-child(4) { top: 80%; left: 50%; width: 10px; height: 10px; background-color: #f7b03e; }
+.particle:nth-child(5) { top: 20%; left: 85%; width: 7px; height: 7px; background-color: #64b5f6; } /* Slightly lighter blue */
+.particle:nth-child(6) { top: 50%; left: 35%; width: 15px; height: 15px; background-color: #fdd835; } /* Yellowish orange */
+.particle:nth-child(7) { top: 70%; left: 90%; width: 9px; height: 9px; background-color: #64b5f6; }
+.particle:nth-child(8) { top: 40%; left: 5%; width: 11px; height: 11px; background-color: #fdd835; }
+.particle:nth-child(9) { top: 90%; left: 30%; width: 5px; height: 5px; background-color: #29abe2; }
+.particle:nth-child(10) { top: 5%; left: 60%; width: 13px; height: 13px; background-color: #f7b03e; }
+
+/* Add more nth-child rules for more particles with varied positions, sizes, and colors */
+
+@keyframes drift {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(50px, 30px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.dashboard-container {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay for content */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #64b5f6; /* Light blue for the heading */
+}
+
+.options {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+    justify-content: center;
+}
+
+.options button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out; /* Transition for the glow effect */
+}
+
+.signup-button {
+    background-color: #29abe2;
+    color: white;
+    box-shadow: 0 0 10px rgba(41, 171, 226, 0.7); /* Light blue glow */
+}
+
+.login-button {
+    background-color: #f7b03e;
+    color: white;
+    box-shadow: 0 0 10px rgba(247, 176, 62, 0.7); /* Orange glow */
+}
+
+.contact-button {
+    background-color: #64b5f6;
+    color: white;
+    box-shadow: 0 0 10px rgba(100, 181, 246, 0.7); /* Slightly lighter blue glow */
+}
+
+.options button:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Stronger white glow on hover */
+}

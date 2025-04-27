@@ -12,11 +12,13 @@
     </div>
     <div class="background-gradient"></div>
     <div class="loading-container">
-        <div class="clock-container">
-            <div id="clock-seconds" class="clock-hand"></div>
+        <div class="circular-progress">
+            <div class="circle">
+                <span id="countdown">60</span>
+            </div>
         </div>
         <p class="typing-text">La la land mine</p>
-        <p class="wait-text">Initializing. Please wait <span id="countdown">60</span> seconds...</p>
+        <p class="wait-text">Initializing. Please wait...</p>
     </div>
 
     <div class="copyright">
@@ -24,6 +26,31 @@
     </div>
 
     <script>
+        const headerTypingElement = document.querySelector('.header-typing-text');
+        const headerFullText = headerTypingElement.textContent;
+        let headerCharIndex = headerFullText.length;
+        let headerDirection = -1; // -1 for backward, 1 for forward
+        const headerTypingSpeed = 150; // Adjust speed
+
+        function headerTypeWriter() {
+            headerTypingElement.textContent = headerFullText.substring(0, headerCharIndex);
+            headerCharIndex += headerDirection;
+
+            if (headerCharIndex < 0) {
+                headerCharIndex = 0;
+                headerDirection = 1;
+                setTimeout(headerTypeWriter, 1000); // Pause at start
+            } else if (headerCharIndex > headerFullText.length) {
+                headerCharIndex = headerFullText.length;
+                headerDirection = -1;
+                setTimeout(headerTypeWriter, 1000); // Pause at end
+            } else {
+                setTimeout(headerTypeWriter, headerTypingSpeed);
+            }
+        }
+
+        headerTypeWriter(); // Start header typing animation
+
         let countdown = 60;
         const countdownDisplay = document.getElementById('countdown');
         const loadingContainer = document.querySelector('.loading-container');
@@ -31,33 +58,13 @@
         const fullText = typingTextElement.textContent;
         typingTextElement.textContent = ''; // Clear the initial "la la land mine" text
         let charIndex = 0;
-        const secondsHand = document.getElementById('clock-seconds');
-        const clockContainer = document.querySelector('.clock-container');
-        const clockRadius = clockContainer.offsetWidth / 2; // Get the radius
-
-        function headerTypeWriter() {
-            const headerTypingElement = document.querySelector('.header-typing-text');
-            const headerFullText = headerTypingElement.textContent;
-            headerTypingElement.textContent = ''; // Clear initial header text
-            let headerCharIndex = 0;
-
-            function type() {
-                if (headerCharIndex < headerFullText.length) {
-                    headerTypingElement.textContent += headerFullText.charAt(headerCharIndex);
-                    charIndex++;
-                    setTimeout(type, 150); // Adjust header typing speed
-                }
-            }
-            type();
-        }
-
-        headerTypeWriter(); // Start header typing animation
+        const typingSpeed = 100; // Adjust typing speed
 
         function typeWriter() {
             if (charIndex < fullText.length) {
                 typingTextElement.textContent += fullText.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeWriter, 100); // Adjust typing speed
+                setTimeout(typeWriter, typingSpeed);
             }
         }
 
@@ -66,11 +73,6 @@
         const interval = setInterval(() => {
             countdown--;
             countdownDisplay.textContent = countdown;
-            const secondsRotation = (60 - countdown) * 6; // 360 degrees / 60 seconds
-            secondsHand.style.transform = `rotate(${secondsRotation}deg)`;
-
-            // Adjust the length of the hand based on the radius
-            secondsHand.style.width = `${clockRadius - 5}px`; // Subtract a few pixels for visual spacing
 
             if (countdown <= 0) {
                 clearInterval(interval);
@@ -78,7 +80,7 @@
             }
         }, 1000);
 
-        // Simulate the circular progress (keeping this for visual feedback)
+        // Simulate the circular progress
         const circle = document.querySelector('.circle');
         let progress = 0;
         const progressInterval = setInterval(() => {
@@ -89,7 +91,6 @@
             )`;
             if (progress >= 100) {
                 clearInterval(progressInterval);
-                // Optionally, you can add a visual completion state here
             }
         }, 600); // Adjust timing for a 60-second fill
     </script>

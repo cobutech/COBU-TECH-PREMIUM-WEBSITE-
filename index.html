@@ -12,29 +12,14 @@
     </div>
     <div class="background-gradient"></div>
     <div class="loading-container">
-        <div class="circular-progress">
-            <div class="circle"></div>
+        <div class="clock-container">
+            <div id="clock-seconds" class="clock-hand"></div>
         </div>
         <p class="typing-text">La la land mine</p>
         <p class="wait-text">Initializing. Please wait <span id="countdown">60</span> seconds...</p>
     </div>
 
     <script>
-        const headerTypingElement = document.querySelector('.header-typing-text');
-        const headerFullText = headerTypingElement.textContent;
-        headerTypingElement.textContent = ''; // Clear initial header text
-        let headerCharIndex = 0;
-
-        function headerTypeWriter() {
-            if (headerCharIndex < headerFullText.length) {
-                headerTypingElement.textContent += headerFullText.charAt(headerCharIndex);
-                headerCharIndex++;
-                setTimeout(headerTypeWriter, 150); // Adjust header typing speed
-            }
-        }
-
-        headerTypeWriter(); // Start header typing animation
-
         let countdown = 60;
         const countdownDisplay = document.getElementById('countdown');
         const loadingContainer = document.querySelector('.loading-container');
@@ -42,6 +27,25 @@
         const fullText = typingTextElement.textContent;
         typingTextElement.textContent = ''; // Clear the initial "la la land mine" text
         let charIndex = 0;
+        const secondsHand = document.getElementById('clock-seconds');
+
+        function headerTypeWriter() {
+            const headerTypingElement = document.querySelector('.header-typing-text');
+            const headerFullText = headerTypingElement.textContent;
+            headerTypingElement.textContent = ''; // Clear initial header text
+            let headerCharIndex = 0;
+
+            function type() {
+                if (headerCharIndex < headerFullText.length) {
+                    headerTypingElement.textContent += headerFullText.charAt(headerCharIndex);
+                    headerCharIndex++;
+                    setTimeout(type, 150); // Adjust header typing speed
+                }
+            }
+            type();
+        }
+
+        headerTypeWriter(); // Start header typing animation
 
         function typeWriter() {
             if (charIndex < fullText.length) {
@@ -56,13 +60,16 @@
         const interval = setInterval(() => {
             countdown--;
             countdownDisplay.textContent = countdown;
+            const secondsRotation = (60 - countdown) * 6; // 360 degrees / 60 seconds
+            secondsHand.style.transform = `rotate(${secondsRotation}deg)`;
+
             if (countdown <= 0) {
                 clearInterval(interval);
                 window.location.href = 'dashboard.html'; // Redirect to dashboard after 60 seconds
             }
         }, 1000);
 
-        // Simulate the circular progress
+        // Simulate the circular progress (keeping this for visual feedback)
         const circle = document.querySelector('.circle');
         let progress = 0;
         const progressInterval = setInterval(() => {

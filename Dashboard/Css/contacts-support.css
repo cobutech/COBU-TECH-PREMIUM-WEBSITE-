@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url(https://files.catbox.moe/npkr8o.jpg); /* Use the provided image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-container {
+    text-align: center;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background for readability */
+    border-radius: 15px;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.contact-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    color: white;
+    text-decoration: none;
+    cursor: pointer; /* Make it look clickable */
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.telegram-group {
+    background-color: #0088cc;
+}
+
+.telegram-channel {
+    background-color: #0088cc;
+}
+
+.whatsapp-group {
+    background-color: #25d366;
+}
+
+.whatsapp-channel {
+    background-color: #25d366;
+}
+
+.github {
+    background-color: #333;
+}
+
+.youtube {
+    background-color: #ff0000;
+}
+
+.gmail {
+    background-color: #d44638;
+}
+
+.contact-button:hover {
+    opacity: 0.8;
+}

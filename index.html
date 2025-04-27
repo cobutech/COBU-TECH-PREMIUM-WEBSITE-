@@ -19,6 +19,10 @@
         <p class="wait-text">Initializing. Please wait <span id="countdown">60</span> seconds...</p>
     </div>
 
+    <div class="copyright">
+        &copy; 2025 - 2029
+    </div>
+
     <script>
         let countdown = 60;
         const countdownDisplay = document.getElementById('countdown');
@@ -28,6 +32,8 @@
         typingTextElement.textContent = ''; // Clear the initial "la la land mine" text
         let charIndex = 0;
         const secondsHand = document.getElementById('clock-seconds');
+        const clockContainer = document.querySelector('.clock-container');
+        const clockRadius = clockContainer.offsetWidth / 2; // Get the radius
 
         function headerTypeWriter() {
             const headerTypingElement = document.querySelector('.header-typing-text');
@@ -38,7 +44,7 @@
             function type() {
                 if (headerCharIndex < headerFullText.length) {
                     headerTypingElement.textContent += headerFullText.charAt(headerCharIndex);
-                    headerCharIndex++;
+                    charIndex++;
                     setTimeout(type, 150); // Adjust header typing speed
                 }
             }
@@ -62,6 +68,9 @@
             countdownDisplay.textContent = countdown;
             const secondsRotation = (60 - countdown) * 6; // 360 degrees / 60 seconds
             secondsHand.style.transform = `rotate(${secondsRotation}deg)`;
+
+            // Adjust the length of the hand based on the radius
+            secondsHand.style.width = `${clockRadius - 5}px`; // Subtract a few pixels for visual spacing
 
             if (countdown <= 0) {
                 clearInterval(interval);

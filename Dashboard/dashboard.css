@@ -4,8 +4,8 @@ body {
     font-family: sans-serif;
     color: white;
     min-height: 100vh;
-    background-color: #03172b; /* Deep dark blue - Firebase-like */
-    overflow: hidden; /* To contain the background effects */
+    background-color: #181818; /* Dark background */
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,87 +17,100 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Behind the content */
+    z-index: -1;
 }
 
-.particle {
+.firebase-background .radial-gradient {
     position: absolute;
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: drift 15s linear infinite, pulse 3s ease-in-out infinite alternate;
-}
-
-.particle:nth-child(1) { top: 10%; left: 20%; width: 8px; height: 8px; background-color: #29abe2; } /* Light blue */
-.particle:nth-child(2) { top: 30%; left: 70%; width: 12px; height: 12px; background-color: #f7b03e; } /* Orange */
-.particle:nth-child(3) { top: 60%; left: 10%; width: 6px; height: 6px; background-color: #29abe2; }
-.particle:nth-child(4) { top: 80%; left: 50%; width: 10px; height: 10px; background-color: #f7b03e; }
-.particle:nth-child(5) { top: 20%; left: 85%; width: 7px; height: 7px; background-color: #64b5f6; } /* Slightly lighter blue */
-.particle:nth-child(6) { top: 50%; left: 35%; width: 15px; height: 15px; background-color: #fdd835; } /* Yellowish orange */
-.particle:nth-child(7) { top: 70%; left: 90%; width: 9px; height: 9px; background-color: #64b5f6; }
-.particle:nth-child(8) { top: 40%; left: 5%; width: 11px; height: 11px; background-color: #fdd835; }
-.particle:nth-child(9) { top: 90%; left: 30%; width: 5px; height: 5px; background-color: #29abe2; }
-.particle:nth-child(10) { top: 5%; left: 60%; width: 13px; height: 13px; background-color: #f7b03e; }
-
-/* Add more nth-child rules for more particles with varied positions, sizes, and colors */
-
-@keyframes drift {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(50px, 30px); }
-    100% { transform: translate(0, 0); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(1.1); opacity: 0.8; }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 140, 0, 0.2) 10%, transparent 70%), /* Orange glow */
+                radial-gradient(circle at bottom left, rgba(0, 176, 255, 0.15) 20%, transparent 70%), /* Blue glow */
+                radial-gradient(circle at top right, rgba(255, 255, 0, 0.1) 20%, transparent 70%), /* Yellowish glow */
+                linear-gradient(to bottom, #333333 0%, #181818 100%); /* Dark gradient */
 }
 
 .dashboard-container {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay for content */
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    /* No background color for transparency against the radial gradient */
 }
 
-h1 {
-    font-size: 2.5em;
+.welcome-text {
+    font-size: 2em;
     margin-bottom: 30px;
-    color: #64b5f6; /* Light blue for the heading */
+    color: #f5f5f5;
 }
 
-.options {
+.auth-buttons {
     display: flex;
-    gap: 20px; /* Space between buttons */
-    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
 }
 
-.options button {
+.auth-buttons button {
     padding: 15px 30px;
     border: none;
     border-radius: 8px;
     font-size: 1.1em;
     cursor: pointer;
-    transition: box-shadow 0.3s ease-in-out; /* Transition for the glow effect */
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .signup-button {
-    background-color: #29abe2;
+    background-color: #4CAF50; /* Green */
     color: white;
-    box-shadow: 0 0 10px rgba(41, 171, 226, 0.7); /* Light blue glow */
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
 }
 
 .login-button {
-    background-color: #f7b03e;
+    background-color: #2196F3; /* Blue */
     color: white;
-    box-shadow: 0 0 10px rgba(247, 176, 62, 0.7); /* Orange glow */
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.7);
+}
+
+.auth-buttons button:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.contact-container {
+    position: absolute;
+    bottom: 25%; /* 1/4 of the page from the bottom */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .contact-button {
-    background-color: #64b5f6;
-    color: white;
-    box-shadow: 0 0 10px rgba(100, 181, 246, 0.7); /* Slightly lighter blue glow */
+    padding: 15px 30px;
+    border: 2px solid #f44336; /* Red border */
+    background-color: transparent;
+    color: #f44336;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
 }
 
-.options button:hover {
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Stronger white glow on hover */
+.contact-button:hover {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.8);
+}
+
+.typing-animation-container {
+    position: absolute;
+    top: 20px; /* Adjust vertical position */
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.typing-text {
+    font-size: 1.2em;
+    color: #ff9800; /* Orange color for typing text */
 }

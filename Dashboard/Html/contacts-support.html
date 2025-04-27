@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COBU-TECH Premium Membership</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="firebase-background">
+        <div class="radial-gradient"></div>
+    </div>
+
+    <div class="dashboard-container">
+        <h1 class="welcome-text">Welcome to COBU-TECH PREMIUM MEMBERSHIP</h1>
+        <div class="auth-buttons">
+            <button class="signup-button">Sign Up</button>
+            <button class="login-button">Log In</button>
+        </div>
+        <div class="contact-container">
+            <button class="contact-button">Contact Support</button>
+        </div>
+        <div class="typing-animation-container">
+            <p class="typing-text">Loading Data...</p>
+        </div>
+    </div>
+
+    <script>
+        const typingTextElement = document.querySelector('.typing-text');
+        const fullText = typingTextElement.textContent;
+        let charIndex = 0;
+        const typingSpeed = 100;
+        let animationDirection = 1; // 1 for right, -1 for left
+
+        function typeAnimation() {
+            typingTextElement.textContent = fullText.substring(0, charIndex);
+            charIndex += animationDirection;
+
+            if (charIndex > fullText.length) {
+                animationDirection = -1;
+                setTimeout(typeAnimation, 1000); // Pause at end
+            } else if (charIndex < 0) {
+                animationDirection = 1;
+                setTimeout(typeAnimation, 1000); // Pause at start
+            } else {
+                setTimeout(typeAnimation, typingSpeed);
+            }
+        }
+
+        typeAnimation();
+
+        document.querySelector('.signup-button').addEventListener('click', () => {
+            window.location.href = '../Html/sign-up.html';
+        });
+
+        document.querySelector('.login-button').addEventListener('click', () => {
+            window.location.href = '../Html/login.html';
+        });
+
+        document.querySelector('.contact-button').addEventListener('click', () => {
+            window.location.href = '../Html/contacts-support.html';
+        });
+    </script>
+</body>
+</html>

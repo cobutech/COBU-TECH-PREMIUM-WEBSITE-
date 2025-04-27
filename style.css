@@ -43,6 +43,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin-top: 50px; /* Add some space below the header */
+    margin-bottom: 30px; /* Add space above the copyright */
 }
 
 .clock-container {
@@ -58,14 +59,14 @@ body {
 }
 
 .clock-hand {
-    width: 40%;
     height: 2px;
     background-color: #00ffc8; /* Second hand color */
     position: absolute;
     top: 50%;
-    transform-origin: left center; /* Rotate from the center-left */
+    transform-origin: left center; /* Rotate from the left center */
     transform: translateX(-50%) rotate(0deg); /* Initial position */
     border-radius: 1px;
+    width: 35px; /* Adjusted width to be close to the radius (80px / 2 = 40px) */
 }
 
 .typing-text {
@@ -94,4 +95,10 @@ body {
 /* Hide the circular progress as the clock is the new visual */
 .circular-progress {
     display: none;
+}
+
+.copyright {
+    font-size: 0.8em;
+    color: #8892b0;
+    margin-bottom: 20px; /* Add some bottom spacing */
 }

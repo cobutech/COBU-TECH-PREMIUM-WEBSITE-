@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the top initially */
+    background-color: #0a192f; /* A very dark blue, almost black */
+    position: relative; /* For positioning the radial gradient */
+    overflow: hidden; /* Prevent text overflow */
+    text-align: center;
+}
+
+.header-typing-container {
+    width: 100%;
+    padding: 20px 0; /* Add some top padding */
+    text-align: center;
+}
+
+.header-typing-text {
+    font-size: 2em;
+    color: #00ffc8; /* Teal-like color for the header */
+    white-space: nowrap;
+    overflow: hidden;
+    letter-spacing: 0.1em;
+}
+
+.background-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(10, 25, 47, 0.8) 0%, rgba(0, 0, 0, 1) 70%); /* Dark radial gradient */
+    z-index: -1; /* Place it behind the main content */
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px; /* Add some space below the header */
+}
+
+.circular-progress {
+    width: 150px; /* Radius of 75px * 2 */
+    height: 150px; /* Radius of 75px * 2 */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative; /* For potential inner elements */
+}
+
+.circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(red 0%, red 0%, transparent 0% 100%); /* Initial state */
+    animation: fillCircle 60s linear forwards;
+}
+
+@keyframes fillCircle {
+    0% {
+        background: conic-gradient(red 0%, red 0%, transparent 0% 100%);
+    }
+    33.33% {
+        background: conic-gradient(red 0%, red 33.33%, green 33.33% 66.66%, transparent 66.66% 100%);
+    }
+    66.66% {
+        background: conic-gradient(red 0%, red 33.33%, green 33.33% 66.66%, blue 66.66% 100%, transparent 100% 100%);
+    }
+    100% {
+        background: conic-gradient(red 0%, red 33.33%, green 33.33% 66.66%, blue 66.66% 100%, blue 100% 100%);
+    }
+}
+
+.typing-text {
+    font-size: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 10px;
+    color: #ccd6f6;
+}
+
+.wait-text {
+    font-size: 1.1em;
+    color: #8892b0;
+}
+
+#countdown {
+    font-weight: bold;
+    color: #00ffc8;
+}

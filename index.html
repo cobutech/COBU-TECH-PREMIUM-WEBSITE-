@@ -40,9 +40,29 @@
              box-shadow: 0 0 5px rgba(100, 181, 246, 0.5);
          }
  
+         .skip-button {
+             position: absolute;
+             top: 10px;
+             left: 10px;
+             background-color: rgba(255, 255, 255, 0.1);
+             color: #f0f0f0;
+             border: 1px solid #ff9800; /* Orange color for skip */
+             padding: 8px 15px;
+             border-radius: 8px;
+             cursor: pointer;
+             font-size: 0.9em;
+             transition: background-color 0.3s ease, box-shadow 0.3s ease-in-out;
+             box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+         }
+ 
+         .skip-button:hover {
+             background-color: rgba(255, 152, 0, 0.2);
+             box-shadow: 0 0 15px rgba(255, 152, 0, 0.8);
+         }
      </style>
  </head>
  <body>
+     <button class="skip-button" onclick="window.location.href='Dashboard/dashboard.html'">Skip Intro</button>
      <div class="timezone-date" id="timezone-date">
          <div class="current-time" id="current-time"></div>
          <div id="date-container"></div>

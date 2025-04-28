@@ -24,6 +24,10 @@
      margin-bottom: 20px;
  }
  
+ .form-step {
+     margin-bottom: 20px;
+ }
+ 
  .form-group {
      margin-bottom: 15px;
      text-align: left;
@@ -46,6 +50,8 @@
      font-size: 1em;
  }
  
+ .next-button,
+ .prev-button,
  .login-button {
      background-color: #007bff;
      color: white;
@@ -56,8 +62,11 @@
      font-size: 1.1em;
      width: 100%;
      transition: background-color 0.3s ease;
+     margin-top: 10px;
  }
  
+ .next-button:hover,
+ .prev-button:hover,
  .login-button:hover {
      background-color: #0056b3;
  }

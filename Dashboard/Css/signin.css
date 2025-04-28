@@ -1,87 +1,100 @@
- /* Dashboard/Css/discord-signin.css */
+ /* Dashboard/Css/signin.css */
 
- body.discord-background {
-     background-image: url('https://i.imgur.com/your-image-id.png'); /* Replace with the actual image URL */
-     background-size: cover;
-     background-repeat: no-repeat;
-     background-position: center;
-     height: 100vh;
-     margin: 0;
+ body {
+     font-family: sans-serif;
+     background-color: #f4f4f4;
      display: flex;
      justify-content: center;
      align-items: center;
-     font-family: 'Whitney', sans-serif; /* Discord's custom font (fallback to sans-serif) */
-     background-color: #36393f; /* Discord's dark background color */
+     min-height: 100vh;
+     margin: 0;
  }
 
- .discord-signin-container {
-     background-color: #23272a; /* Darker container background */
-     color: #dcddde; /* Light grey text color */
+ .signin-container {
+     background-color: #fff;
      padding: 30px;
      border-radius: 8px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     width: 400px;
      text-align: center;
-     width: 90%;
-     max-width: 400px;
  }
 
  h1 {
-     color: #fff; /* White heading */
+     color: #333;
      margin-bottom: 20px;
-     font-weight: 600;
-     font-size: 2em;
+ }
+
+ .form-step {
+     margin-bottom: 20px;
+ }
+
+ .form-group {
+     margin-bottom: 15px;
+     text-align: left;
  }
 
  label {
      display: block;
-     margin-bottom: 8px;
-     color: #b9bbbe;
-     text-align: left;
-     font-weight: 500;
+     margin-bottom: 5px;
+     color: #555;
+     font-size: 0.9em;
  }
 
  input[type="text"],
  input[type="email"],
  input[type="password"] {
-     width: calc(100% - 20px);
+     width: 100%;
      padding: 10px;
-     margin-bottom: 15px;
-     border: none;
-     border-radius: 3px;
-     background-color: #313338;
-     color: #dcddde;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     box-sizing: border-box;
+     font-size: 1em;
  }
 
  input[type="checkbox"] {
-     margin-right: 8px;
+     margin-right: 5px;
  }
 
- .discord-link {
-     color: #00b0f4; /* Discord's blue link color */
-     text-decoration: none;
- }
-
- .discord-link:hover {
-     text-decoration: underline;
- }
-
- .discord-button {
-     background-color: #7289da; /* Discord's primary button color */
+ .next-button,
+ .prev-button,
+ .signin-button {
+     background-color: #007bff;
      color: white;
+     padding: 12px 20px;
      border: none;
-     border-radius: 3px;
-     padding: 12px 15px;
-     font-size: 1em;
+     border-radius: 4px;
      cursor: pointer;
-     transition: background-color 0.2s ease;
+     font-size: 1.1em;
      width: 100%;
+     transition: background-color 0.3s ease;
      margin-top: 10px;
  }
 
- .discord-button:hover {
-     background-color: #677bc4;
+ .next-button:hover,
+ .prev-button:hover,
+ .signin-button:hover {
+     background-color: #0056b3;
+ }
+
+ .signin-button {
+     background-color: #5cb85c;
+ }
+
+ .signin-button:hover {
+     background-color: #4cae4c;
  }
 
  .login-link {
      margin-top: 20px;
-     color: #b9bbbe;
+     font-size: 0.9em;
+     color: #777;
+ }
+
+ .login-link a {
+     color: #007bff;
+     text-decoration: none;
+ }
+
+ .login-link a:hover {
+     text-decoration: underline;
  }

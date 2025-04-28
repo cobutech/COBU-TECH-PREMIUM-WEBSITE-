@@ -1,122 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initializing...</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .timezone-date {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 0.9em;
-        }
-    </style>
-</head>
-<body>
-    <div class="timezone-date" id="timezone-date"></div>
-
-    <div class="header-typing-container">
-        <h1 class="header-typing-text">Loading...</h1>
-    </div>
-    <div class="background-gradient"></div>
-    <div class="loading-container">
-        <div class="circular-progress">
-            <div class="circle">
-                <span id="countdown">60</span>
-            </div>
-        </div>
-        <p class="typing-text">La la land mine</p>
-        <p class="wait-text">Initializing. Please wait...</p>
-    </div>
-
-    <div class="copyright">
-        &copy; 2025 - 2029
-    </div>
-
-    <script>
-        function updateTimezoneDate() {
-            const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-            const formattedDateTime = now.toLocaleDateString('en-US', options);
-            document.getElementById('timezone-date').textContent = formattedDateTime;
-        }
-
-        // Update the timezone and date immediately when the page loads
-        updateTimezoneDate();
-
-        // Optionally, you can update it periodically (e.g., every second)
-        // setInterval(updateTimezoneDate, 1000);
-
-        const headerTypingElement = document.querySelector('.header-typing-text');
-        const headerFullText = headerTypingElement.textContent;
-        let headerCharIndex = headerFullText.length;
-        let headerDirection = -1; // -1 for backward, 1 for forward
-        const headerTypingSpeed = 150; // Adjust speed
-
-        function headerTypeWriter() {
-            headerTypingElement.textContent = headerFullText.substring(0, headerCharIndex);
-            headerCharIndex += headerDirection;
-
-            if (headerCharIndex < 0) {
-                headerCharIndex = 0;
-                headerDirection = 1;
-                setTimeout(headerTypeWriter, 1000); // Pause at start
-            } else if (headerCharIndex > headerFullText.length) {
-                headerCharIndex = headerFullText.length;
-                headerDirection = -1;
-                setTimeout(headerTypeWriter, 1000); // Pause at end
-            } else {
-                setTimeout(headerTypeWriter, headerTypingSpeed);
-            }
-        }
-
-        headerTypeWriter(); // Start header typing animation
-
-        let countdown = 60;
-        const countdownDisplay = document.getElementById('countdown');
-        const loadingContainer = document.querySelector('.loading-container');
-        const typingTextElement = document.querySelector('.typing-text');
-        const fullText = typingTextElement.textContent;
-        typingTextElement.textContent = ''; // Clear the initial "la la land mine" text
-        let charIndex = 0;
-        const typingSpeed = 100; // Adjust typing speed
-
-        function typeWriter() {
-            if (charIndex < fullText.length) {
-                typingTextElement.textContent += fullText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, typingSpeed);
-            }
-        }
-
-        typeWriter(); // Start the "la la land mine" typing animation
-
-        const interval = setInterval(() => {
-            countdown--;
-            countdownDisplay.textContent = countdown;
-
-            if (countdown <= 0) {
-                clearInterval(interval);
-                window.location.href = 'Dashboard/dashboard.html'; // Corrected redirection
-            }
-        }, 1000);
-
-        // Simulate the circular progress
-        const circle = document.querySelector('.circle');
-        let progress = 0;
-        const progressInterval = setInterval(() => {
-            progress++;
-            circle.style.background = `conic-gradient(
-                hsl(${progress * 3}, 100%, 50%) 0% ${progress}%,
-                transparent ${progress}% 100%
-            )`;
-            if (progress >= 100) {
-                clearInterval(progressInterval);
-            }
-        }, 600); // Adjust timing for a 60-second fill
-    </script>
-</body>
-</html>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Initializing...</title>
+     <link rel="stylesheet" href="style.css">
+     <style>
+         .timezone-date {
+             position: fixed;
+             top: 10px;
+             right: 10px;
+             color: white;
+             font-size: 0.9em;
+             display: flex; /* Use flexbox for layout */
+             flex-direction: column; /* Stack the elements vertically */
+             align-items: flex-end; /* Align to the right */
+         }
+ 
+         .current-time {
+             font-size: 1.2em; /* Make the time larger */
+             font-weight: bold; /* Make the time bold */
+             margin-bottom: 5px; /* Add space between time and date */
+         }
+ 
+         .close-button {
+             position: absolute;
+             top: 5px;
+             left: 5px;
+             background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+             color: white;
+             border: none;
+             padding: 5px 10px;
+             border-radius: 5px;
+             cursor: pointer;
+             font-size: 0.8em;
+             transition: background-color 0.3s ease;
+         }
+ 
+         .close-button:hover {
+             background-color: rgba(255, 255, 255, 0.4);
+         }
+     </style>
+ </head>
+ <body>
+     <button class="close-button" onclick="window.location.href='Dashboard/dashboard.html'">Close</button>
+     <div class="timezone-date" id="timezone-date">
+         <div class="current-time" id="current-time"></div>
+         <div id="current-date"></div>
+     </div>
+ 
+     <div class="header-typing-container">
+         <h1 class="header-typing-text">Loading...</h1>
+     </div>
+     <div class="background-gradient"></div>
+     <div class="loading-container">
+         <div class="circular-progress">
+             <div class="circle">
+                 <span id="countdown">60</span>
+             </div>
+         </div>
+         <p class="typing-text">La la land mine</p>
+         <p class="wait-text">Initializing. Please wait...</p>
+     </div>
+ 
+     <div class="copyright">
+         &copy; 2025 - 2029
+     </div>
+ 
+     <script>
+         function updateTime() {
+             const now = new Date();
+             const hours = String(now.getHours()).padStart(2, '0');
+             const minutes = String(now.getMinutes()).padStart(2, '0');
+             const seconds = String(now.getSeconds()).padStart(2, '0');
+             const timeString = `${hours}:${minutes}:${seconds}`;
+             document.getElementById('current-time').textContent = timeString;
+ 
+             const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+             const dateString = now.toLocaleDateString('en-US', dateOptions);
+             document.getElementById('current-date').textContent = dateString;
+         }
+ 
+         // Update the time immediately
+         updateTime();
+ 
+         // Update the time every second
+         setInterval(updateTime, 1000);
+ 
+ 
+         const headerTypingElement = document.querySelector('.header-typing-text');
+         const headerFullText = headerTypingElement.textContent;
+         let headerCharIndex = headerFullText.length;
+         let headerDirection = -1; // -1 for backward, 1 for forward
+         const headerTypingSpeed = 150; // Adjust speed
+ 
+         function headerTypeWriter() {
+             headerTypingElement.textContent = headerFullText.substring(0, headerCharIndex);
+             headerCharIndex += headerDirection;
+ 
+             if (headerCharIndex < 0) {
+                 headerCharIndex = 0;
+                 headerDirection = 1;
+                 setTimeout(headerTypeWriter, 1000); // Pause at start
+             } else if (headerCharIndex > headerFullText.length) {
+                 headerCharIndex = headerFullText.length;
+                 headerDirection = -1;
+                 setTimeout(headerTypeWriter, 1000); // Pause at end
+             } else {
+                 setTimeout(headerTypeWriter, headerTypingSpeed);
+             }
+         }
+ 
+         headerTypeWriter(); // Start header typing animation
+ 
+         let countdown = 60;
+         const countdownDisplay = document.getElementById('countdown');
+         const loadingContainer = document.querySelector('.loading-container');
+         const typingTextElement = document.querySelector('.typing-text');
+         const fullText = typingTextElement.textContent;
+         typingTextElement.textContent = ''; // Clear the initial "la la land mine" text
+         let charIndex = 0;
+         const typingSpeed = 100; // Adjust typing speed
+ 
+         function typeWriter() {
+             if (charIndex < fullText.length) {
+                 typingTextElement.textContent += fullText.charAt(charIndex);
+                 charIndex++;
+                 setTimeout(typeWriter, typingSpeed);
+             }
+         }
+ 
+         typeWriter(); // Start the "la la land mine" typing animation
+ 
+         const interval = setInterval(() => {
+             countdown--;
+             countdownDisplay.textContent = countdown;
+ 
+             if (countdown <= 0) {
+                 clearInterval(interval);
+                 window.location.href = 'Dashboard/dashboard.html'; // Corrected redirection
+             }
+         }, 1000);
+ 
+         // Simulate the circular progress
+         const circle = document.querySelector('.circle');
+         let progress = 0;
+         const progressInterval = setInterval(() => {
+             progress++;
+             circle.style.background = `conic-gradient(
+                 hsl(${progress * 3}, 100%, 50%) 0% ${progress}%,
+                 transparent ${progress}% 100%
+             )`;
+             if (progress >= 100) {
+                 clearInterval(progressInterval);
+             }
+         }, 600); // Adjust timing for a 60-second fill
+     </script>
+ </body>
+ </html>

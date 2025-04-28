@@ -24,6 +24,13 @@ body {
     flex-direction: column;
     gap: 15px;
     margin-top: 20px;
+    align-items: center; /* Center the dropdown containers */
+}
+
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .contact-button {
@@ -33,23 +40,18 @@ body {
     font-size: 1em;
     color: white;
     text-decoration: none;
-    cursor: pointer; /* Make it look clickable */
-    transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease-in-out; /* Add transition for smooth glow */
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease-in-out;
+    margin-bottom: 10px; /* Space between main buttons */
+    width: 200px; /* Adjust width as needed */
+    box-sizing: border-box; /* Ensure padding doesn't increase width */
 }
 
-.telegram-group {
+.telegram-button {
     background-color: #0088cc;
 }
 
-.telegram-channel {
-    background-color: #0088cc;
-}
-
-.whatsapp-group {
-    background-color: #25d366;
-}
-
-.whatsapp-channel {
+.whatsapp-button {
     background-color: #25d366;
 }
 
@@ -67,6 +69,38 @@ body {
 
 .contact-button:hover {
     opacity: 0.8;
+}
+
+.options-container {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    gap: 8px; /* Slightly smaller gap for options */
+    margin-top: 8px; /* Slightly smaller margin for options */
+    width: 180px; /* Slightly smaller width for options */
+}
+
+.options-container.show {
+    display: flex; /* Show when the 'show' class is added */
+}
+
+.option-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    text-align: center; /* Center the text in option buttons */
+}
+
+.telegram-options .option-button {
+    background-color: rgba(0, 136, 204, 0.8); /* Slightly darker/transparent Telegram color */
+}
+
+.whatsapp-options .option-button {
+    background-color: rgba(37, 211, 102, 0.8); /* Slightly darker/transparent WhatsApp color */
 }
 
 /* Galaxy glow effect */

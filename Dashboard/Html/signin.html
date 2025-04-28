@@ -5,31 +5,71 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Sign In</title>
      <link rel="stylesheet" href="../Css/signin.css">
+     <style>
+         .password-fields {
+             display: none; /* Initially hidden */
+         }
+     </style>
  </head>
  <body>
      <div class="signin-container">
          <h1>Sign In</h1>
          <form id="signin-form">
-             <div class="form-group">
-                 <label for="username">Username:</label>
-                 <input type="text" id="username" name="username" required>
+             <div class="form-step" id="step-1">
+                 <div class="form-group">
+                     <label for="username">Username:</label>
+                     <input type="text" id="username" name="username" required>
+                 </div>
+                 <div class="form-group">
+                     <label for="email">Email:</label>
+                     <input type="email" id="email" name="email" required>
+                 </div>
+                 <div class="form-group">
+                     <input type="checkbox" id="terms" name="terms" required>
+                     <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                 </div>
+                 <button type="button" class="next-button">Next</button>
              </div>
-             <div class="form-group">
-                 <label for="email">Email:</label>
-                 <input type="email" id="email" name="email" required>
+ 
+             <div class="form-step password-fields" id="step-2">
+                 <div class="form-group">
+                     <label for="password">Password:</label>
+                     <input type="password" id="password" name="password" required>
+                 </div>
+                 <div class="form-group">
+                     <label for="confirm-password">Confirm Password:</label>
+                     <input type="password" id="confirm-password" name="confirm-password" required>
+                 </div>
+                 <button type="submit" class="signin-button">Create Account</button>
+                 <button type="button" class="prev-button">Previous</button>
              </div>
-             <div class="form-group">
-                 <label for="password">Password:</label>
-                 <input type="password" id="password" name="password" required>
-             </div>
-             <div class="form-group">
-                 <label for="confirm-password">Confirm Password:</label>
-                 <input type="password" id="confirm-password" name="confirm-password" required>
-             </div>
-             <button type="submit" class="signin-button">Create Account</button>
          </form>
          <p class="login-link">Already have an account? <a href="login.html">Log In</a></p>
      </div>
+ 
+     <script>
+         const step1 = document.getElementById('step-1');
+         const step2 = document.getElementById('step-2');
+         const nextButton = step1.querySelector('.next-button');
+         const prevButton = step2.querySelector('.prev-button');
+         const signinForm = document.getElementById('signin-form');
+ 
+         nextButton.addEventListener('click', () => {
+             step1.style.display = 'none';
+             step2.style.display = 'block';
+         });
+ 
+         prevButton.addEventListener('click', () => {
+             step2.style.display = 'none';
+             step1.style.display = 'block';
+         });
+ 
+         signinForm.addEventListener('submit', (event) => {
+             // In a real application, after successful backend processing
+             // and sending the verification email, you would redirect here.
+             window.location.href = 'verification.html';
+             event.preventDefault(); // Prevent the default form submission for this example.
+         });
+     </script>
  </body>
  </html>
-

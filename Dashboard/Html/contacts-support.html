@@ -5,15 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Support</title>
     <link rel="stylesheet" href="../Css/contacts-support.css">
+    <style>
+        .options-container {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .options-container.show {
+            display: flex; /* Show when the 'show' class is added */
+        }
+
+        .option-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .telegram-options .option-button {
+            background-color: #0088cc;
+        }
+
+        .whatsapp-options .option-button {
+            background-color: #25d366;
+        }
+    </style>
 </head>
 <body>
     <div class="contact-container">
         <h1>Contact Us</h1>
         <div class="contact-buttons">
-            <a href="#" class="contact-button telegram-group">Telegram Group</a>
-            <a href="#" class="contact-button telegram-channel">Telegram Channel</a>
-            <a href="#" class="contact-button whatsapp-group">WhatsApp Group</a>
-            <a href="#" class="contact-button whatsapp-channel">WhatsApp Channel</a>
+            <div class="dropdown-container">
+                <button class="contact-button telegram-button">Telegram</button>
+                <div class="options-container telegram-options">
+                    <a href="#" class="option-button">Join Telegram Channel</a>
+                    <a href="#" class="option-button">Join Telegram Group</a>
+                    <a href="#" class="option-button">Contact Me via Telegram</a>
+                    <a href="#" class="option-button">Follow on Facebook</a>
+                    <a href="#" class="option-button">Follow on Instagram</a>
+                    <a href="tel:+yourphonenumber" class="option-button">Call Me</a>
+                </div>
+            </div>
+
+            <div class="dropdown-container">
+                <button class="contact-button whatsapp-button">WhatsApp</button>
+                <div class="options-container whatsapp-options">
+                    <a href="#" class="option-button">Join WhatsApp Channel</a>
+                    <a href="#" class="option-button">Join WhatsApp Group</a>
+                    <a href="#" class="option-button">WhatsApp Me</a>
+                    <a href="#" class="option-button">Follow on Facebook</a>
+                    <a href="#" class="option-button">Follow on Instagram</a>
+                    <a href="tel:+yourphonenumber" class="option-button">Call Me</a>
+                </div>
+            </div>
+
             <a href="#" class="contact-button github">GitHub</a>
             <a href="#" class="contact-button youtube">YouTube</a>
             <a href="mailto:your-email@example.com" class="contact-button gmail">Gmail</a>
@@ -21,15 +72,26 @@
     </div>
 
     <script>
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('contact-button')) {
-                const button = event.target;
-                button.classList.add('glowing'); // Add the glowing class
+        const telegramButton = document.querySelector('.telegram-button');
+        const whatsappButton = document.querySelector('.whatsapp-button');
+        const telegramOptions = document.querySelector('.telegram-options');
+        const whatsappOptions = document.querySelector('.whatsapp-options');
 
-                // Remove the glowing class after a short delay (adjust as needed)
-                setTimeout(() => {
-                    button.classList.remove('glowing');
-                }, 1000); // Glow for 1 second
+        telegramButton.addEventListener('click', () => {
+            telegramOptions.classList.toggle('show');
+            whatsappOptions.classList.remove('show'); // Close WhatsApp options if open
+        });
+
+        whatsappButton.addEventListener('click', () => {
+            whatsappOptions.classList.toggle('show');
+            telegramOptions.classList.remove('show'); // Close Telegram options if open
+        });
+
+        // Close options if clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.dropdown-container')) {
+                telegramOptions.classList.remove('show');
+                whatsappOptions.classList.remove('show');
             }
         });
     </script>

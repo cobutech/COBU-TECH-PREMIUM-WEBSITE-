@@ -9,8 +9,9 @@
         .options-container {
             display: none; /* Initially hidden */
             flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
+            margin-top: 8px;
+            width: 220px; /* Adjust width as needed */
         }
 
         .options-container.show {
@@ -26,14 +27,19 @@
             text-decoration: none;
             cursor: pointer;
             transition: background-color 0.3s ease, opacity 0.3s ease;
+            text-align: center;
         }
 
-        .telegram-options .option-button {
-            background-color: #0088cc;
+        .follow-channels-options .option-button {
+            background-color: rgba(102, 51, 153, 0.8); /* Purple-ish for channels */
         }
 
-        .whatsapp-options .option-button {
-            background-color: #25d366;
+        .follow-me-options .option-button {
+            background-color: rgba(0, 123, 255, 0.8); /* Blue for follow me */
+        }
+
+        .contact-me-options .option-button {
+            background-color: rgba(220, 53, 69, 0.8); /* Red-ish for contact */
         }
     </style>
 </head>
@@ -42,56 +48,73 @@
         <h1>Contact Us</h1>
         <div class="contact-buttons">
             <div class="dropdown-container">
-                <button class="contact-button telegram-button">Telegram</button>
-                <div class="options-container telegram-options">
-                    <a href="#" class="option-button">Join Telegram Channel</a>
-                    <a href="#" class="option-button">Join Telegram Group</a>
-                    <a href="#" class="option-button">Contact Me via Telegram</a>
-                    <a href="#" class="option-button">Follow on Facebook</a>
-                    <a href="#" class="option-button">Follow on Instagram</a>
-                    <a href="tel:+yourphonenumber" class="option-button">Call Me</a>
+                <button class="contact-button main-button follow-channels-button">Follow My Channels</button>
+                <div class="options-container follow-channels-options">
+                    <a href="#" class="option-button">WhatsApp Channel</a>
+                    <a href="#" class="option-button">Telegram Channel</a>
+                    <a href="#" class="option-button">YouTube Channel</a>
                 </div>
             </div>
 
             <div class="dropdown-container">
-                <button class="contact-button whatsapp-button">WhatsApp</button>
-                <div class="options-container whatsapp-options">
-                    <a href="#" class="option-button">Join WhatsApp Channel</a>
-                    <a href="#" class="option-button">Join WhatsApp Group</a>
-                    <a href="#" class="option-button">WhatsApp Me</a>
-                    <a href="#" class="option-button">Follow on Facebook</a>
-                    <a href="#" class="option-button">Follow on Instagram</a>
-                    <a href="tel:+yourphonenumber" class="option-button">Call Me</a>
+                <button class="contact-button main-button follow-me-button">Follow Me</button>
+                <div class="options-container follow-me-options">
+                    <a href="#" class="option-button">Facebook</a>
+                    <a href="#" class="option-button">Instagram</a>
+                    <a href="#" class="option-button">TikTok</a>
+                    <a href="#" class="option-button">Twitter</a>
                 </div>
             </div>
 
-            <a href="#" class="contact-button github">GitHub</a>
-            <a href="#" class="contact-button youtube">YouTube</a>
-            <a href="mailto:your-email@example.com" class="contact-button gmail">Gmail</a>
+            <div class="dropdown-container">
+                <button class="contact-button main-button contact-me-button">Contact Me</button>
+                <div class="options-container contact-me-options">
+                    <a href="#" class="option-button">Telegram</a>
+                    <a href="#" class="option-button">WhatsApp</a>
+                    <a href="mailto:your-email@example.com" class="option-button">Gmail</a>
+                    <a href="tel:+yourphonenumber" class="option-button">Call</a>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const telegramButton = document.querySelector('.telegram-button');
-        const whatsappButton = document.querySelector('.whatsapp-button');
-        const telegramOptions = document.querySelector('.telegram-options');
-        const whatsappOptions = document.querySelector('.whatsapp-options');
+        const followChannelsButton = document.querySelector('.follow-channels-button');
+        const followMeButton = document.querySelector('.follow-me-button');
+        const contactMeButton = document.querySelector('.contact-me-button');
 
-        telegramButton.addEventListener('click', () => {
-            telegramOptions.classList.toggle('show');
-            whatsappOptions.classList.remove('show'); // Close WhatsApp options if open
+        const followChannelsOptions = document.querySelector('.follow-channels-options');
+        const followMeOptions = document.querySelector('.follow-me-options');
+        const contactMeOptions = document.querySelector('.contact-me-options');
+
+        function toggleOptions(optionsContainer) {
+            optionsContainer.classList.toggle('show');
+        }
+
+        followChannelsButton.addEventListener('click', () => {
+            toggleOptions(followChannelsOptions);
+            followMeOptions.classList.remove('show');
+            contactMeOptions.classList.remove('show');
         });
 
-        whatsappButton.addEventListener('click', () => {
-            whatsappOptions.classList.toggle('show');
-            telegramOptions.classList.remove('show'); // Close Telegram options if open
+        followMeButton.addEventListener('click', () => {
+            toggleOptions(followMeOptions);
+            followChannelsOptions.classList.remove('show');
+            contactMeOptions.classList.remove('show');
+        });
+
+        contactMeButton.addEventListener('click', () => {
+            toggleOptions(contactMeOptions);
+            followChannelsOptions.classList.remove('show');
+            followMeOptions.classList.remove('show');
         });
 
         // Close options if clicking outside
         document.addEventListener('click', (event) => {
             if (!event.target.closest('.dropdown-container')) {
-                telegramOptions.classList.remove('show');
-                whatsappOptions.classList.remove('show');
+                followChannelsOptions.classList.remove('show');
+                followMeOptions.classList.remove('show');
+                contactMeOptions.classList.remove('show');
             }
         });
     </script>

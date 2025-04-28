@@ -1,124 +1,147 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-image: url(https://files.catbox.moe/npkr8o.jpg); /* Use the provided image */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact-container {
-    text-align: center;
-    padding: 40px;
-    background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background for readability */
-    border-radius: 15px;
-}
-
-.contact-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-    align-items: center; /* Center the dropdown containers */
-}
-
-.dropdown-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 220px; /* Match the width of the main buttons */
-}
-
-.contact-button.main-button {
-    padding: 15px 30px;
-    border: none;
-    border-radius: 25px;
-    font-size: 1em;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease-in-out;
-    margin-bottom: 10px; /* Space between main buttons */
-    width: 100%;
-    box-sizing: border-box; /* Ensure padding doesn't increase width */
-    text-align: center;
-}
-
-.follow-channels-button {
-    background-color: #673ab7; /* Purple */
-}
-
-.follow-me-button {
-    background-color: #2196f3; /* Blue */
-}
-
-.contact-me-button {
-    background-color: #f44336; /* Red */
-}
-
-.contact-button.main-button:hover {
-    opacity: 0.8;
-}
-
-.options-container {
-    display: none; /* Initially hidden */
-    flex-direction: column;
-    gap: 8px; /* Slightly smaller gap for options */
-    margin-top: 8px; /* Slightly smaller margin for options */
-    width: 100%;
-}
-
-.options-container.show {
-    display: flex; /* Show when the 'show' class is added */
-}
-
-.option-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    font-size: 0.9em;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.follow-channels-options .option-button {
-    background-color: rgba(103, 58, 183, 0.8); /* Slightly darker purple */
-}
-
-.follow-me-options .option-button {
-    background-color: rgba(33, 150, 243, 0.8); /* Slightly darker blue */
-}
-
-.contact-me-options .option-button {
-    background-color: rgba(244, 67, 54, 0.8); /* Slightly darker red */
-}
-
-/* Galaxy glow effect for main buttons */
-.contact-button.main-button.glowing {
-    box-shadow: 0 0 15px rgba(139, 0, 255, 0.8), /* Purple glow */
-                0 0 30px rgba(75, 0, 130, 0.6),   /* Indigo glow */
-                0 0 45px rgba(255, 0, 255, 0.4);  /* Magenta glow */
-    animation: pulse-glow 1s ease-in-out infinite alternate; /* Optional pulsing animation */
-}
-
-@keyframes pulse-glow {
-    0% {
-        box-shadow: 0 0 5px rgba(139, 0, 255, 0.5),
-                    0 0 10px rgba(75, 0, 130, 0.4),
-                    0 0 15px rgba(255, 0, 255, 0.3);
-    }
-    100% {
-        box-shadow: 0 0 15px rgba(139, 0, 255, 0.8),
-                    0 0 30px rgba(75, 0, 130, 0.6),
-                    0 0 45px rgba(255, 0, 255, 0.4);
-    }
-}
+ /* style.css */
+ 
+ body {
+     margin: 0;
+     padding: 0;
+     font-family: sans-serif;
+     background-color: #121212; /* Dark background */
+     color: white;
+     overflow: hidden; /* Prevent scrollbars */
+ }
+ 
+ .header-typing-container {
+     position: absolute;
+     top: 20px;
+     left: 50%;
+     transform: translateX(-50%);
+     text-align: center;
+ }
+ 
+ .header-typing-text {
+     font-size: 2em;
+     color: #f0f0f0;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+ }
+ 
+ .background-gradient {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: linear-gradient(45deg, #4a148c, #2e7d32, #1976d2, #d81b60);
+     background-size: 400% 400%;
+     animation: animate-gradient 10s ease infinite;
+     z-index: -1;
+ }
+ 
+ @keyframes animate-gradient {
+     0% {
+         background-position: 0% 50%;
+     }
+     50% {
+         background-position: 100% 50%;
+     }
+     100% {
+         background-position: 0% 50%;
+     }
+ }
+ 
+ .loading-container {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     text-align: center;
+ }
+ 
+ .circular-progress {
+     position: relative;
+     width: 120px;
+     height: 120px;
+     margin: 0 auto 20px;
+ }
+ 
+ .circle {
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
+     background: conic-gradient(#673ab7 0%, #3f51b5 50%, #e91e63 100%);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-size: 1.5em;
+     font-weight: bold;
+     color: white;
+ }
+ 
+ .typing-text {
+     font-size: 1.5em;
+     color: #f0f0f0;
+     margin-bottom: 10px;
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+ }
+ 
+ .wait-text {
+     font-size: 1em;
+     color: #ccc;
+ }
+ 
+ .copyright {
+     position: fixed;
+     bottom: 10px;
+     left: 50%;
+     transform: translateX(-50%);
+     font-size: 0.8em;
+     color: #777;
+ }
+ 
+ .timezone-date {
+     position: fixed;
+     top: 10px;
+     right: 10px;
+     color: white;
+     font-size: 0.9em;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+ }
+ 
+ .current-time {
+     font-size: 1.2em;
+     font-weight: bold;
+     margin-bottom: 5px;
+     text-shadow: 1px 1px 3px rgba(0, 173, 255, 0.8); /* Plasma glow color */
+     animation: plasma-glow 1.5s ease-in-out infinite alternate;
+ }
+ 
+ @keyframes plasma-glow {
+     0% {
+         text-shadow: 1px 1px 3px rgba(0, 173, 255, 0.5);
+     }
+     100% {
+         text-shadow: 1px 1px 8px rgba(0, 173, 255, 0.9);
+     }
+ }
+ 
+ .current-date {
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+ }
+ 
+ .date-button {
+     background-color: rgba(255, 255, 255, 0.1);
+     color: #f0f0f0;
+     border: 1px solid #64b5f6;
+     padding: 8px 15px;
+     border-radius: 8px;
+     font-size: 0.9em;
+     cursor: default;
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+     transition: background-color 0.3s ease, box-shadow 0.3s ease-in-out;
+ }
+ 
+ .date-button:hover {
+     background-color: rgba(100, 181, 246, 0.2);
+     box-shadow: 0 0 5px rgba(100, 181, 246, 0.5);
+ }

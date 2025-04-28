@@ -1,158 +1,122 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Initializing...</title>
-     <link rel="stylesheet" href="style.css">
-     <style>
-         .timezone-date {
-             position: fixed;
-             top: 10px;
-             right: 10px;
-             color: white;
-             font-size: 0.9em;
-             display: flex; /* Use flexbox for layout */
-             flex-direction: column; /* Stack the elements vertically */
-             align-items: flex-end; /* Align to the right */
-         }
- 
-         .current-time {
-             font-size: 1.2em; /* Make the time larger */
-             font-weight: bold; /* Make the time bold */
-             margin-bottom: 5px; /* Add space between time and date */
-         }
- 
-         .date-button {
-             background-color: rgba(255, 255, 255, 0.1);
-             color: #f0f0f0;
-             border: 1px solid #64b5f6;
-             padding: 8px 15px;
-             border-radius: 8px;
-             font-size: 0.9em;
-             cursor: default; /* No click action for now */
-             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-             transition: background-color 0.3s ease, box-shadow 0.3s ease-in-out;
-         }
- 
-         .date-button:hover {
-             background-color: rgba(100, 181, 246, 0.2);
-             box-shadow: 0 0 5px rgba(100, 181, 246, 0.5);
-         }
-     </style>
- </head>
- <body>
-     <div class="timezone-date" id="timezone-date">
-         <div class="current-time" id="current-time"></div>
-         <div id="date-container"></div>
-     </div>
- 
-     <div class="header-typing-container">
-         <h1 class="header-typing-text">Loading...</h1>
-     </div>
-     <div class="background-gradient"></div>
-     <div class="loading-container">
-         <div class="circular-progress">
-             <div class="circle">
-                 <span id="countdown">60</span>
-             </div>
-         </div>
-         <p class="typing-text">La la land mine</p>
-         <p class="wait-text">Initializing. Please wait...</p>
-     </div>
- 
-     <div class="copyright">
-         &copy; 2025 - 2029
-     </div>
- 
-     <script>
-         function updateTime() {
-             const now = new Date();
-             const hours = String(now.getHours()).padStart(2, '0');
-             const minutes = String(now.getMinutes()).padStart(2, '0');
-             const seconds = String(now.getSeconds()).padStart(2, '0');
-             const timeString = `${hours}:${minutes}:${seconds}`;
-             document.getElementById('current-time').textContent = timeString;
- 
-             const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-             const dateString = now.toLocaleDateString('en-US', dateOptions);
-             document.getElementById('date-container').innerHTML = `<div class="date-button">${dateString}</div>`;
-         }
- 
-         // Update the time immediately
-         updateTime();
- 
-         // Update the time every second
-         setInterval(updateTime, 1000);
- 
- 
-         const headerTypingElement = document.querySelector('.header-typing-text');
-         const headerFullText = headerTypingElement.textContent;
-         let headerCharIndex = headerFullText.length;
-         let headerDirection = -1; // -1 for backward, 1 for forward
-         const headerTypingSpeed = 150; // Adjust speed
- 
-         function headerTypeWriter() {
-             headerTypingElement.textContent = headerFullText.substring(0, headerCharIndex);
-             headerCharIndex += headerDirection;
- 
-             if (headerCharIndex < 0) {
-                 headerCharIndex = 0;
-                 headerDirection = 1;
-                 setTimeout(headerTypeWriter, 1000); // Pause at start
-             } else if (headerCharIndex > headerFullText.length) {
-                 headerCharIndex = headerFullText.length;
-                 headerDirection = -1;
-                 setTimeout(headerTypeWriter, 1000); // Pause at end
-             } else {
-                 setTimeout(headerTypeWriter, headerTypingSpeed);
-             }
-         }
- 
-         headerTypeWriter(); // Start header typing animation
- 
-         let countdown = 60;
-         const countdownDisplay = document.getElementById('countdown');
-         const loadingContainer = document.querySelector('.loading-container');
-         const typingTextElement = document.querySelector('.typing-text');
-         const fullText = typingTextElement.textContent;
-         typingTextElement.textContent = ''; // Clear the initial "la la land mine" text
-         let charIndex = 0;
-         const typingSpeed = 100; // Adjust typing speed
- 
-         function typeWriter() {
-             if (charIndex < fullText.length) {
-                 typingTextElement.textContent += fullText.charAt(charIndex);
-                 charIndex++;
-                 setTimeout(typeWriter, typingSpeed);
-             }
-         }
- 
-         typeWriter(); // Start the "la la land mine" typing animation
- 
-         const interval = setInterval(() => {
-             countdown--;
-             countdownDisplay.textContent = countdown;
- 
-             if (countdown <= 0) {
-                 clearInterval(interval);
-                 window.location.href = 'Dashboard/dashboard.html'; // Corrected redirection
-             }
-         }, 1000);
- 
-         // Simulate the circular progress
-         const circle = document.querySelector('.circle');
-         let progress = 0;
-         const progressInterval = setInterval(() => {
-             progress++;
-             circle.style.background = `conic-gradient(
-                 hsl(${progress * 3}, 100%, 50%) 0% ${progress}%,
-                 transparent ${progress}% 100%
-             )`;
-             if (progress >= 100) {
-                 clearInterval(progressInterval);
-             }
-         }, 600); // Adjust timing for a 60-second fill
-     </script>
- </body>
- </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Support</title>
+    <link rel="stylesheet" href="../Css/contacts-support.css">
+    <style>
+        .options-container {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+            width: 220px; /* Adjust width as needed */
+        }
+
+        .options-container.show {
+            display: flex; /* Show when the 'show' class is added */
+        }
+
+        .option-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            text-align: center;
+        }
+
+        .follow-channels-options .option-button {
+            background-color: rgba(102, 51, 153, 0.8); /* Purple-ish for channels */
+        }
+
+        .follow-me-options .option-button {
+            background-color: rgba(0, 123, 255, 0.8); /* Blue for follow me */
+        }
+
+        .contact-me-options .option-button {
+            background-color: rgba(220, 53, 69, 0.8); /* Red-ish for contact */
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <div class="contact-buttons">
+            <div class="dropdown-container">
+                <button class="contact-button main-button follow-channels-button">Follow My Channels</button>
+                <div class="options-container follow-channels-options">
+                    <a href="#" class="option-button">WhatsApp Channel</a>
+                    <a href="#" class="option-button">Telegram Channel</a>
+                    <a href="#" class="option-button">YouTube Channel</a>
+                </div>
+            </div>
+
+            <div class="dropdown-container">
+                <button class="contact-button main-button follow-me-button">Follow Me</button>
+                <div class="options-container follow-me-options">
+                    <a href="#" class="option-button">Facebook</a>
+                    <a href="#" class="option-button">Instagram</a>
+                    <a href="#" class="option-button">TikTok</a>
+                    <a href="#" class="option-button">Twitter</a>
+                </div>
+            </div>
+
+            <div class="dropdown-container">
+                <button class="contact-button main-button contact-me-button">Contact Me</button>
+                <div class="options-container contact-me-options">
+                    <a href="#" class="option-button">Telegram</a>
+                    <a href="#" class="option-button">WhatsApp</a>
+                    <a href="mailto:your-email@example.com" class="option-button">Gmail</a>
+                    <a href="tel:+yourphonenumber" class="option-button">Call</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const followChannelsButton = document.querySelector('.follow-channels-button');
+        const followMeButton = document.querySelector('.follow-me-button');
+        const contactMeButton = document.querySelector('.contact-me-button');
+
+        const followChannelsOptions = document.querySelector('.follow-channels-options');
+        const followMeOptions = document.querySelector('.follow-me-options');
+        const contactMeOptions = document.querySelector('.contact-me-options');
+
+        function toggleOptions(optionsContainer) {
+            optionsContainer.classList.toggle('show');
+        }
+
+        followChannelsButton.addEventListener('click', () => {
+            toggleOptions(followChannelsOptions);
+            followMeOptions.classList.remove('show');
+            contactMeOptions.classList.remove('show');
+        });
+
+        followMeButton.addEventListener('click', () => {
+            toggleOptions(followMeOptions);
+            followChannelsOptions.classList.remove('show');
+            contactMeOptions.classList.remove('show');
+        });
+
+        contactMeButton.addEventListener('click', () => {
+            toggleOptions(contactMeOptions);
+            followChannelsOptions.classList.remove('show');
+            followMeOptions.classList.remove('show');
+        });
+
+        // Close options if clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.dropdown-container')) {
+                followChannelsOptions.classList.remove('show');
+                followMeOptions.classList.remove('show');
+                contactMeOptions.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

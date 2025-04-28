@@ -11,7 +11,7 @@
             flex-direction: column;
             gap: 8px;
             margin-top: 8px;
-            width: 50px; /* Adjust width for icons */
+            width: 200px; /* Adjust width for text */
             padding: 5px; /* Add some padding */
         }
 
@@ -20,10 +20,9 @@
         }
 
         .option-button {
-            padding: 8px;
+            padding: 10px 15px;
             border: none;
-            border-radius: 50%; /* Make them circular for icons */
-            font-size: 0; /* Hide text if any */
+            border-radius: 5px;
             color: white;
             text-decoration: none;
             cursor: pointer;
@@ -31,18 +30,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 40px; /* Fixed width for circular buttons */
-            height: 40px; /* Fixed height for circular buttons */
-            margin: 5px auto; /* Center icons */
+            width: 100%; /* Full width for text buttons */
+            text-align: center;
         }
 
         .option-button:active { /* Add active state for immediate feedback */
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        .option-button img {
-            max-width: 30px;
-            max-height: 30px;
         }
 
         /* Specific colors for Follow My Channels options */
@@ -70,29 +63,29 @@
             <div class="dropdown-container">
                 <button class="contact-button main-button follow-channels-button">Follow My Channels</button>
                 <div class="options-container follow-channels-options">
-                    <a href="https://whatsapp.com/channel/0029Vadx3PxJ3juvWsDlrN11" class="option-button"><img src="icons/whatsapp.png" alt="WhatsApp"></a>
-                    <a href="https://t.me/+-B6ymywjkJI5YmI8" class="option-button"><img src="icons/telegram.png" alt="Telegram"></a>
-                    <a href="YOUR_YOUTUBE_CHANNEL_LINK_HERE" class="option-button"><img src="icons/youtube.png" alt="YouTube"></a>
+                    <a href="https://whatsapp.com/channel/0029Vadx3PxJ3juvWsDlrN11" class="option-button">WhatsApp Channel</a>
+                    <a href="https://t.me/+-B6ymywjkJI5YmI8" class="option-button">Telegram Channel</a>
+                    <a href="YOUR_YOUTUBE_CHANNEL_LINK_HERE" class="option-button">YouTube Channel</a>
                 </div>
             </div>
 
             <div class="dropdown-container">
                 <button class="contact-button main-button follow-me-button">Follow Me</button>
                 <div class="options-container follow-me-options">
-                    <a href="https://www.facebook.com/profile.php?id=100089479186475" class="option-button"><img src="icons/facebook.png" alt="Facebook"></a>
-                    <a href="https://www.instagram.com/cobu254?igsh=MzRlODBiNWFlZA==" class="option-button"><img src="icons/instagram.png" alt="Instagram"></a>
-                    <a href="https://www.tiktok.com/@cobu19?lang=en-GB" class="option-button"><img src="icons/tiktok.png" alt="TikTok"></a>
-                    <a href="https://mobile.x.com/Cobutech155903" class="option-button"><img src="icons/twitter.png" alt="Twitter"></a>
+                    <a href="https://www.facebook.com/profile.php?id=100089479186475" class="option-button">Facebook</a>
+                    <a href="https://www.instagram.com/cobu254?igsh=MzRlODBiNWFlZA==" class="option-button">Instagram</a>
+                    <a href="https://www.tiktok.com/@cobu19?lang=en-GB" class="option-button">TikTok</a>
+                    <a href="https://mobile.x.com/Cobutech155903" class="option-button">Twitter</a>
                 </div>
             </div>
 
             <div class="dropdown-container">
                 <button class="contact-button main-button contact-me-button">Contact Me</button>
                 <div class="options-container contact-me-options">
-                    <a href="https://t.me/obu254" class="option-button"><img src="icons/telegram.png" alt="Telegram"></a>
-                    <a href="https://wa.me/254796281776" class="option-button"><img src="icons/whatsapp.png" alt="WhatsApp"></a>
-                    <a href="mailto:calvinonyango700@gmail.com" class="option-button"><img src="icons/gmail.png" alt="Gmail"></a>
-                    <a href="tel:+254796281776" class="option-button"><img src="icons/call.png" alt="Call"></a>
+                    <a href="https://t.me/obu254" class="option-button">Telegram Me</a>
+                    <a href="https://wa.me/254796281776" class="option-button">WhatsApp Me</a>
+                    <a href="mailto:calvinonyango700@gmail.com" class="option-button">Email</a>
+                    <a href="tel:+254796281776" class="option-button">Call Me</a>
                 </div>
             </div>
         </div>

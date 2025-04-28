@@ -3,62 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Support</title>
-    <link rel="stylesheet" href="css/contacts-support.css">
-    <style>
-        .deleted {
-            display: none !important;
-        }
-    </style>
+    <title>COBUTECH Premium VIP Website</title>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-    <div class="contact-container">
-        <h1>Contact Us</h1>
-        <div class="contact-buttons">
-            <a href="#" class="contact-button telegram-group" data-button-id="telegram-group">Telegram Group</a>
-            <a href="#" class="contact-button telegram-channel" data-button-id="telegram-channel">Telegram Channel</a>
-            <a href="#" class="contact-button whatsapp-group" data-button-id="whatsapp-group">WhatsApp Group</a>
-            <a href="#" class="contact-button whatsapp-channel" data-button-id="whatsapp-channel">WhatsApp Channel</a>
-            <a href="#" class="contact-button github" data-button-id="github">GitHub</a>
-            <a href="#" class="contact-button youtube" data-button-id="youtube">YouTube</a>
-            <a href="mailto:your-email@example.com" class="contact-button gmail" data-button-id="gmail">Gmail</a>
+    <div class="dashboard-container">
+        <div class="typing-animation-container">
+            <h1 class="welcome-typing-text">WELCOME TO<br>COBUTECH PREMIUM<br>VIP WEBSITE</h1>
+        </div>
+        <div class="logo-container">
+            <img class="profile-picture" src="https://files.catbox.moe/npkr8o.jpg" alt="Profile Picture">
+        </div>
+        <div class="membership-buttons">
+            <button class="membership-button signup-button">MEMBERSHIP</button>
+            <button class="membership-button login-button">MEMBER</button>
+        </div>
+        <div class="contact-section">
+            <p class="contact-text">TO REACH ME PRESS<br>THIS BUTTON 👇👇👇</p>
+            <div class="contact-container">
+                <button class="contact-button">CONTACT SUPPORT</button>
+            </div>
         </div>
     </div>
 
+    <div class="copyright">
+        &copy; COBUTECH PREMIUM@2024-2029
+    </div>
+
     <script>
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('contact-button')) {
-                const buttonToDelete = event.target;
-                const buttonToDeleteId = buttonToDelete.dataset.buttonId;
+        const welcomeTypingElement = document.querySelector('.welcome-typing-text');
+        const welcomeFullText = welcomeTypingElement.textContent;
+        welcomeTypingElement.textContent = ''; // Clear initial text
+        let welcomeCharIndex = 0;
+        const welcomeTypingSpeed = 150; // Adjust typing speed
 
-                if (confirm(`Are you sure you want to delete the "${buttonToDelete.textContent}" button?`)) {
-                    buttonToDelete.classList.add('deleted');
-
-                    const allButtons = Array.from(document.querySelectorAll('.contact-button:not(.deleted)'));
-                    const deletedButtonIndex = Array.from(document.querySelectorAll('.contact-button')).indexOf(buttonToDelete);
-
-                    // Find the button below the deleted one
-                    const buttonBelow = allButtons.find((button, index) => {
-                        const currentIndex = Array.from(document.querySelectorAll('.contact-button:not(.deleted)')).indexOf(button);
-                        const originalIndex = Array.from(document.querySelectorAll('.contact-button')).indexOf(button);
-                        return originalIndex > deletedButtonIndex;
-                    });
-
-                    if (buttonBelow) {
-                        // Change the color of the button below
-                        const currentColor = getComputedStyle(buttonBelow).backgroundColor;
-                        const colors = ['#007bff', '#dc3545', '#28a745', '#ffc107', '#17a2b8', '#6c757d']; // Example color palette
-                        let newColor = colors[Math.floor(Math.random() * colors.length)];
-
-                        // Ensure the new color is different from the current color
-                        while (newColor === currentColor) {
-                            newColor = colors[Math.floor(Math.random() * colors.length)];
-                        }
-                        buttonBelow.style.backgroundColor = newColor;
-                    }
-                }
-                event.preventDefault(); // Prevent the link from navigating
+        function welcomeTypeWriter() {
+            if (welcomeCharIndex < welcomeFullText.length) {
+                welcomeTypingElement.textContent += welcomeFullText.charAt(welcomeCharIndex);
+                welcomeCharIndex++;
+                setTimeout(welcomeTypeWriter, welcomeTypingSpeed);
             }
+        }
+
+        welcomeTypeWriter(); // Start the welcome text typing animation
+
+        document.querySelector('.signup-button').addEventListener('click', () => {
+            window.location.href = '../Html/sign-up.html';
+        });
+
+        document.querySelector('.login-button').addEventListener('click', () => {
+            window.location.href = '../Html/login.html';
+        });
+
+        document.querySelector('.contact-button').addEventListener('click', () => {
+            window.location.href = '../Html/contacts-support.html';
         });
     </script>
 </body>

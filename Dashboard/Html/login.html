@@ -70,12 +70,12 @@
          });
  
          loginForm.addEventListener('submit', (event) => {
+             // Always redirect to verification.html upon login attempt
              window.location.href = 'verification.html';
              event.preventDefault();
          });
  
          forgotPasswordLink.addEventListener('click', (event) => {
-             // In a real application, this would likely redirect to a "Forgot Password" page.
              alert('Forgot Password functionality will be implemented here.');
              event.preventDefault();
          });

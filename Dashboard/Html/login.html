@@ -53,10 +53,8 @@
          });
  
          loginForm.addEventListener('submit', (event) => {
-             // In a real application, you would handle the login submission here.
-             console.log('Log In submitted!');
-             alert('Log In attempted (simulated)!');
-             // You would typically send the login credentials to a server.
+             // Instead of redirecting to house.html, redirect to verification.html
+             window.location.href = 'verification.html';
              event.preventDefault(); // Prevent the default form submission for this example.
          });
      </script>

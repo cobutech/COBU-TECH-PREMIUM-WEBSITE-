@@ -42,7 +42,7 @@ body {
     color: white;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease-in-out;
+    transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.1s ease-in-out; /* Added transition for glow */
     margin-bottom: 10px; /* Space between main buttons */
     width: 100%;
     box-sizing: border-box; /* Ensure padding doesn't increase width */
@@ -65,6 +65,10 @@ body {
     opacity: 0.8;
 }
 
+.contact-button.main-button:active { /* Add active state for immediate feedback */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
 .options-container {
     display: none; /* Initially hidden */
     flex-direction: column;
@@ -85,21 +89,13 @@ body {
     color: white;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
+    transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.1s ease-in-out; /* Added transition for glow */
     text-align: center;
     box-sizing: border-box;
 }
 
-.follow-channels-options .option-button {
-    background-color: rgba(103, 58, 183, 0.8); /* Slightly darker purple */
-}
-
-.follow-me-options .option-button {
-    background-color: rgba(33, 150, 243, 0.8); /* Slightly darker blue */
-}
-
-.contact-me-options .option-button {
-    background-color: rgba(244, 67, 54, 0.8); /* Slightly darker red */
+.option-button:active { /* Add active state for immediate feedback */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 /* Galaxy glow effect for main buttons */
@@ -107,7 +103,7 @@ body {
     box-shadow: 0 0 15px rgba(139, 0, 255, 0.8), /* Purple glow */
                 0 0 30px rgba(75, 0, 130, 0.6),   /* Indigo glow */
                 0 0 45px rgba(255, 0, 255, 0.4);  /* Magenta glow */
-    animation: pulse-glow 1s ease-in-out infinite alternate; /* Optional pulsing animation */
+    animation: pulse-glow 1s ease-in-out alternate; /* Optional pulsing animation */
 }
 
 @keyframes pulse-glow {

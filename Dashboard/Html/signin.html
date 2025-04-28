@@ -6,29 +6,11 @@
      <title>Sign In</title>
      <link rel="stylesheet" href="../Css/signin.css">
      <link rel="stylesheet" href="../Css/discord-signin.css">
-     <style>
-         .password-fields {
-             display: none; /* Initially hidden */
-         }
-
-         #welcome-text-container {
-             position: absolute;
-             top: 20px; /* Adjust top margin as needed */
-             left: 20px; /* Adjust left margin as needed */
-             color: #ffffff; /* White text color */
-             font-size: 1.2em;
-             white-space: nowrap;
-             overflow: hidden;
-         }
-
-         #welcome-text {
-             display: inline-block;
-         }
-     </style>
+     <link rel="stylesheet" href="../Css/welcome-button.css">
  </head>
  <body class="discord-background">
-     <div id="welcome-text-container">
-         <span id="welcome-text"></span>
+     <div id="welcome-button-container">
+         <button id="welcome-button"><span id="welcome-text"></span></button>
      </div>
      <div class="signin-container discord-signin-container">
          <h1>Create an account</h1>
@@ -71,7 +53,8 @@
          const nextButton = step1.querySelector('.next-button');
          const prevButton = step2.querySelector('.prev-button');
          const signinForm = document.getElementById('signin-form');
-         const welcomeTextElement = document.getElementById('welcome-text');
+         const welcomeButton = document.getElementById('welcome-button');
+         const welcomeTextElement = welcomeButton.querySelector('#welcome-text');
          const phrases = [
              "Welcome to cobu-tech industry",
              "Feel free to be a member",
@@ -80,6 +63,7 @@
          let phraseIndex = 0;
          let textIndex = 0;
          let isTyping = true;
+         let glowInterval;
 
          function type() {
              if (phraseIndex < phrases.length) {
@@ -89,6 +73,8 @@
                      textIndex++;
                      if (textIndex > currentPhrase.length) {
                          isTyping = false;
+                         clearInterval(glowInterval); // Stop glowing during pause
+                         welcomeButton.classList.remove('glowing');
                          setTimeout(erase, 3000); // Wait 3 seconds before erasing
                      } else {
                          setTimeout(type, 100); // Typing speed
@@ -98,6 +84,7 @@
                  phraseIndex = 0; // Loop through phrases again
                  textIndex = 0;
                  isTyping = true;
+                 startGlow(); // Start glowing for the new phrase
                  setTimeout(type, 100);
              }
          }
@@ -110,11 +97,20 @@
              } else {
                  isTyping = true;
                  phraseIndex++;
+                 startGlow(); // Start glowing for the new phrase
                  setTimeout(type, 500); // Small delay before typing next phrase
              }
          }
 
-         // Start the animation
+         function startGlow() {
+             clearInterval(glowInterval); // Clear any existing interval
+             glowInterval = setInterval(() => {
+                 welcomeButton.classList.toggle('glowing');
+             }, 500); // Toggle glow class every 0.5 seconds
+         }
+
+         // Start the animation with glow
+         startGlow();
          type();
 
          nextButton.addEventListener('click', () => {

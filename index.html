@@ -62,7 +62,7 @@
      </style>
  </head>
  <body>
-     <button class="skip-button" onclick="window.location.href='Dashboard/dashboard.html'">Skip Intro</button>
+     <button class="skip-button" id="skipButton">Skip Intro</button>
      <div class="timezone-date" id="timezone-date">
          <div class="current-time" id="current-time"></div>
          <div id="date-container"></div>
@@ -100,18 +100,14 @@
              document.getElementById('date-container').innerHTML = `<div class="date-button">${dateString}</div>`;
          }
  
-         // Update the time immediately
          updateTime();
- 
-         // Update the time every second
          setInterval(updateTime, 1000);
- 
  
          const headerTypingElement = document.querySelector('.header-typing-text');
          const headerFullText = headerTypingElement.textContent;
          let headerCharIndex = headerFullText.length;
-         let headerDirection = -1; // -1 for backward, 1 for forward
-         const headerTypingSpeed = 150; // Adjust speed
+         let headerDirection = -1;
+         const headerTypingSpeed = 150;
  
          function headerTypeWriter() {
              headerTypingElement.textContent = headerFullText.substring(0, headerCharIndex);
@@ -120,26 +116,26 @@
              if (headerCharIndex < 0) {
                  headerCharIndex = 0;
                  headerDirection = 1;
-                 setTimeout(headerTypeWriter, 1000); // Pause at start
+                 setTimeout(headerTypeWriter, 1000);
              } else if (headerCharIndex > headerFullText.length) {
                  headerCharIndex = headerFullText.length;
                  headerDirection = -1;
-                 setTimeout(headerTypeWriter, 1000); // Pause at end
+                 setTimeout(headerTypeWriter, 1000);
              } else {
                  setTimeout(headerTypeWriter, headerTypingSpeed);
              }
          }
  
-         headerTypeWriter(); // Start header typing animation
+         headerTypeWriter();
  
          let countdown = 60;
          const countdownDisplay = document.getElementById('countdown');
          const loadingContainer = document.querySelector('.loading-container');
          const typingTextElement = document.querySelector('.typing-text');
          const fullText = typingTextElement.textContent;
-         typingTextElement.textContent = ''; // Clear the initial "la la land mine" text
+         typingTextElement.textContent = '';
          let charIndex = 0;
-         const typingSpeed = 100; // Adjust typing speed
+         const typingSpeed = 100;
  
          function typeWriter() {
              if (charIndex < fullText.length) {
@@ -149,19 +145,18 @@
              }
          }
  
-         typeWriter(); // Start the "la la land mine" typing animation
+         typeWriter();
  
-         const interval = setInterval(() => {
+         const countdownInterval = setInterval(() => {
              countdown--;
              countdownDisplay.textContent = countdown;
  
              if (countdown <= 0) {
-                 clearInterval(interval);
-                 window.location.href = 'Dashboard/dashboard.html'; // Corrected redirection
+                 clearInterval(countdownInterval);
+                 window.location.href = 'Dashboard/dashboard.html';
              }
          }, 1000);
  
-         // Simulate the circular progress
          const circle = document.querySelector('.circle');
          let progress = 0;
          const progressInterval = setInterval(() => {
@@ -173,7 +168,14 @@
              if (progress >= 100) {
                  clearInterval(progressInterval);
              }
-         }, 600); // Adjust timing for a 60-second fill
+         }, 600);
+ 
+         const skipButton = document.getElementById('skipButton');
+         skipButton.addEventListener('click', () => {
+             clearInterval(countdownInterval);
+             clearInterval(progressInterval);
+             window.location.href = 'Dashboard/dashboard.html';
+         });
      </script>
  </body>
  </html>

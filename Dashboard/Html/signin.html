@@ -65,10 +65,9 @@
          });
  
          signinForm.addEventListener('submit', (event) => {
-             // In a real application, after successful backend processing
-             // and sending the verification email, you would redirect here.
-             window.location.href = 'verification.html';
-             event.preventDefault(); // Prevent the default form submission for this example.
+             console.log('Sign-in form submitted!'); // Added for debugging
+             window.location.href = 'Dashboard/verification.html';
+             event.preventDefault();
          });
      </script>
  </body>

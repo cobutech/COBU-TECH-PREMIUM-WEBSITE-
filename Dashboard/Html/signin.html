@@ -5,65 +5,128 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Sign In</title>
      <link rel="stylesheet" href="../Css/signin.css">
+     <link rel="stylesheet" href="../Css/discord-signin.css">
      <style>
          .password-fields {
              display: none; /* Initially hidden */
          }
+
+         #welcome-text-container {
+             position: absolute;
+             top: 20px; /* Adjust top margin as needed */
+             left: 20px; /* Adjust left margin as needed */
+             color: #ffffff; /* White text color */
+             font-size: 1.2em;
+             white-space: nowrap;
+             overflow: hidden;
+         }
+
+         #welcome-text {
+             display: inline-block;
+         }
      </style>
  </head>
- <body>
-     <div class="signin-container">
-         <h1>Sign In</h1>
+ <body class="discord-background">
+     <div id="welcome-text-container">
+         <span id="welcome-text"></span>
+     </div>
+     <div class="signin-container discord-signin-container">
+         <h1>Create an account</h1>
          <form id="signin-form">
              <div class="form-step" id="step-1">
                  <div class="form-group">
-                     <label for="username">Username:</label>
+                     <label for="username">Username</label>
                      <input type="text" id="username" name="username" required>
                  </div>
                  <div class="form-group">
-                     <label for="email">Email:</label>
+                     <label for="email">Email</label>
                      <input type="email" id="email" name="email" required>
                  </div>
                  <div class="form-group">
                      <input type="checkbox" id="terms" name="terms" required>
-                     <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                     <label for="terms">I agree to the <a href="#" class="discord-link">Terms of Service</a> and <a href="#" class="discord-link">Privacy Policy</a></label>
                  </div>
-                 <button type="button" class="next-button">Next</button>
+                 <button type="button" class="next-button discord-button">Next</button>
              </div>
- 
+
              <div class="form-step password-fields" id="step-2">
                  <div class="form-group">
-                     <label for="password">Password:</label>
+                     <label for="password">Password</label>
                      <input type="password" id="password" name="password" required>
                  </div>
                  <div class="form-group">
-                     <label for="confirm-password">Confirm Password:</label>
+                     <label for="confirm-password">Confirm Password</label>
                      <input type="password" id="confirm-password" name="confirm-password" required>
                  </div>
-                 <button type="submit" class="signin-button">Create Account</button>
-                 <button type="button" class="prev-button">Previous</button>
+                 <button type="submit" class="signin-button discord-button">Create Account</button>
+                 <button type="button" class="prev-button discord-button">Previous</button>
              </div>
          </form>
-         <p class="login-link">Already have an account? <a href="login.html">Log In</a></p>
+         <p class="login-link">Already have an account? <a href="login.html" class="discord-link">Log In</a></p>
      </div>
- 
+
      <script>
          const step1 = document.getElementById('step-1');
          const step2 = document.getElementById('step-2');
          const nextButton = step1.querySelector('.next-button');
          const prevButton = step2.querySelector('.prev-button');
          const signinForm = document.getElementById('signin-form');
- 
+         const welcomeTextElement = document.getElementById('welcome-text');
+         const phrases = [
+             "Welcome to cobu-tech industry",
+             "Feel free to be a member",
+             "Membership access"
+         ];
+         let phraseIndex = 0;
+         let textIndex = 0;
+         let isTyping = true;
+
+         function type() {
+             if (phraseIndex < phrases.length) {
+                 const currentPhrase = phrases[phraseIndex];
+                 if (isTyping) {
+                     welcomeTextElement.textContent = currentPhrase.substring(0, textIndex + 1);
+                     textIndex++;
+                     if (textIndex > currentPhrase.length) {
+                         isTyping = false;
+                         setTimeout(erase, 3000); // Wait 3 seconds before erasing
+                     } else {
+                         setTimeout(type, 100); // Typing speed
+                     }
+                 }
+             } else {
+                 phraseIndex = 0; // Loop through phrases again
+                 textIndex = 0;
+                 isTyping = true;
+                 setTimeout(type, 100);
+             }
+         }
+
+         function erase() {
+             if (textIndex > 0) {
+                 welcomeTextElement.textContent = phrases[phraseIndex].substring(0, textIndex - 1);
+                 textIndex--;
+                 setTimeout(erase, 50); // Erasing speed
+             } else {
+                 isTyping = true;
+                 phraseIndex++;
+                 setTimeout(type, 500); // Small delay before typing next phrase
+             }
+         }
+
+         // Start the animation
+         type();
+
          nextButton.addEventListener('click', () => {
              step1.style.display = 'none';
              step2.style.display = 'block';
          });
- 
+
          prevButton.addEventListener('click', () => {
              step2.style.display = 'none';
              step1.style.display = 'block';
          });
- 
+
          signinForm.addEventListener('submit', (event) => {
              window.location.href = 'verification.html';
              event.preventDefault();

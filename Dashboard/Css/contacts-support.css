@@ -31,9 +31,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 220px; /* Match the width of the main buttons */
 }
 
-.contact-button {
+.contact-button.main-button {
     padding: 15px 30px;
     border: none;
     border-radius: 25px;
@@ -43,31 +44,24 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease-in-out;
     margin-bottom: 10px; /* Space between main buttons */
-    width: 200px; /* Adjust width as needed */
+    width: 100%;
     box-sizing: border-box; /* Ensure padding doesn't increase width */
+    text-align: center;
 }
 
-.telegram-button {
-    background-color: #0088cc;
+.follow-channels-button {
+    background-color: #673ab7; /* Purple */
 }
 
-.whatsapp-button {
-    background-color: #25d366;
+.follow-me-button {
+    background-color: #2196f3; /* Blue */
 }
 
-.github {
-    background-color: #333;
+.contact-me-button {
+    background-color: #f44336; /* Red */
 }
 
-.youtube {
-    background-color: #ff0000;
-}
-
-.gmail {
-    background-color: #d44638;
-}
-
-.contact-button:hover {
+.contact-button.main-button:hover {
     opacity: 0.8;
 }
 
@@ -76,7 +70,7 @@ body {
     flex-direction: column;
     gap: 8px; /* Slightly smaller gap for options */
     margin-top: 8px; /* Slightly smaller margin for options */
-    width: 180px; /* Slightly smaller width for options */
+    width: 100%;
 }
 
 .options-container.show {
@@ -92,19 +86,24 @@ body {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease, opacity 0.3s ease;
-    text-align: center; /* Center the text in option buttons */
+    text-align: center;
+    box-sizing: border-box;
 }
 
-.telegram-options .option-button {
-    background-color: rgba(0, 136, 204, 0.8); /* Slightly darker/transparent Telegram color */
+.follow-channels-options .option-button {
+    background-color: rgba(103, 58, 183, 0.8); /* Slightly darker purple */
 }
 
-.whatsapp-options .option-button {
-    background-color: rgba(37, 211, 102, 0.8); /* Slightly darker/transparent WhatsApp color */
+.follow-me-options .option-button {
+    background-color: rgba(33, 150, 243, 0.8); /* Slightly darker blue */
 }
 
-/* Galaxy glow effect */
-.contact-button.glowing {
+.contact-me-options .option-button {
+    background-color: rgba(244, 67, 54, 0.8); /* Slightly darker red */
+}
+
+/* Galaxy glow effect for main buttons */
+.contact-button.main-button.glowing {
     box-shadow: 0 0 15px rgba(139, 0, 255, 0.8), /* Purple glow */
                 0 0 30px rgba(75, 0, 130, 0.6),   /* Indigo glow */
                 0 0 45px rgba(255, 0, 255, 0.4);  /* Magenta glow */

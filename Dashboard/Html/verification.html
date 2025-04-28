@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Email Verification</title>
+     <link rel="stylesheet" href="../Css/verification.css">
+ </head>
+ <body>
+     <div class="verification-container">
+         <h1>Email Verification</h1>
+         <div id="verification-message">
+             <p>Verifying your email address...</p>
+             <div class="loading-spinner"></div>
+         </div>
+         <p class="redirect-message">You will be redirected shortly.</p>
+     </div>
+ 
+     <script>
+         document.addEventListener('DOMContentLoaded', () => {
+             const urlParams = new URLSearchParams(window.location.search);
+             const token = urlParams.get('token');
+             const messageDiv = document.getElementById('verification-message');
+             const redirectMessage = document.querySelector('.redirect-message');
+ 
+             console.log('Verification Token:', token);
+ 
+             // Simulate server-side verification (replace with actual API call)
+             setTimeout(() => {
+                 if (token === 'validToken123') { // Replace with your actual validation logic
+                     messageDiv.innerHTML = "<p class='success'>Your email has been successfully verified!</p>";
+                     setTimeout(() => {
+                         window.location.href = '../house.html'; // Redirect to house.html
+                     }, 3000);
+                 } else {
+                     messageDiv.innerHTML = "<p class='error'>Invalid or missing verification token.</p>";
+                     redirectMessage.innerHTML = "<p><a href='../login.html'>Return to Log In</a></p>";
+                 }
+             }, 2500);
+         });
+     </script>
+ </body>
+ </html>
+ 

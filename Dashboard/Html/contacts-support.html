@@ -1,153 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Support</title>
-    <link rel="stylesheet" href="../Css/contacts-support.css">
-    <style>
-        .options-container {
-            display: none; /* Initially hidden */
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 8px;
-            width: 250px; /* Adjust width for longer descriptions */
-            padding: 5px; /* Add some padding */
-        }
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Contact Support</title>
+     <link rel="stylesheet" href="../Css/contacts-support.css">
+     <style>
+         .options-container {
+             display: none; /* Initially hidden */
+             flex-direction: column;
+             gap: 8px;
+             margin-top: 8px;
+             width: 200px; /* Adjust width for text */
+             padding: 5px; /* Add some padding */
+         }
 
-        .options-container.show {
-            display: flex; /* Show when the 'show' class is added */
-        }
+         .options-container.show {
+             display: flex; /* Show when the 'show' class is added */
+         }
 
-        .option-button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.1s ease-in-out; /* Added transition for glow */
-            display: flex;
-            justify-content: space-between; /* Space out text and potential icon */
-            align-items: center;
-            width: 100%; /* Full width for text buttons */
-            text-align: left;
-        }
+         .option-button {
+             padding: 10px 15px;
+             border: none;
+             border-radius: 5px;
+             color: white;
+             text-decoration: none;
+             cursor: pointer;
+             transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.1s ease-in-out; /* Added transition for glow */
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             width: 100%; /* Full width for text buttons */
+             text-align: center;
+         }
 
-        .option-button:active { /* Add active state for immediate feedback */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
+         .option-button:active { /* Add active state for immediate feedback */
+             box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+         }
 
-        .option-description {
-            font-size: 0.8em;
-            color: #eee; /* Slightly lighter text for description */
-            margin-left: 10px;
-        }
+         /* Specific colors for Follow My Channels options */
+         .follow-channels-options .option-button:nth-child(1) { background-color: #25d366; } /* WhatsApp */
+         .follow-channels-options .option-button:nth-child(2) { background-color: #0088cc; } /* Telegram */
+         .follow-channels-options .option-button:nth-child(3) { background-color: #ff0000; } /* YouTube */
 
-        .dropdown-description {
-            font-size: 0.9em;
-            color: #777;
-            margin-top: 5px;
-            text-align: center;
-        }
+         /* Specific colors for Follow Me options */
+         .follow-me-options .option-button:nth-child(1) { background-color: #1877f2; } /* Facebook */
+         .follow-me-options .option-button:nth-child(2) { background-color: #e4405f; } /* Instagram */
+         .follow-me-options .option-button:nth-child(3) { background-color: #000000; } /* TikTok */
+         .follow-me-options .option-button:nth-child(4) { background-color: #1da1f2; } /* Twitter */
 
-        /* Specific colors for Follow My Channels options */
-        .follow-channels-options .option-button:nth-child(1) { background-color: #25d366; } /* WhatsApp */
-        .follow-channels-options .option-button:nth-child(2) { background-color: #0088cc; } /* Telegram */
-        .follow-channels-options .option-button:nth-child(3) { background-color: #ff0000; } /* YouTube */
+         /* Specific colors for Contact Me options */
+         .contact-me-options .option-button:nth-child(1) { background-color: #0088cc; } /* Telegram */
+         .contact-me-options .option-button:nth-child(2) { background-color: #25d366; } /* WhatsApp */
+         .contact-me-options .option-button:nth-child(3) { background-color: #d44638; } /* Gmail */
+         .contact-me-options .option-button:nth-child(4) { background-color: #000000; } /* Call (Generic dark) */
+     </style>
+ </head>
+ <body>
+     <div class="contact-container">
+         <h1>Contact Us</h1>
+         <div class="contact-buttons">
+             <div class="dropdown-container">
+                 <button class="contact-button main-button follow-channels-button">Follow My Channels</button>
+                 <div class="options-container follow-channels-options">
+                     <a href="https://whatsapp.com/channel/0029Vadx3PxJ3juvWsDlrN11" class="option-button">WhatsApp Channel</a>
+                     <a href="https://t.me/+-B6ymywjkJI5YmI8" class="option-button">Telegram Channel</a>
+                     <a href="YOUR_YOUTUBE_CHANNEL_LINK_HERE" class="option-button">YouTube Channel</a>
+                 </div>
+             </div>
 
-        /* Specific colors for Follow Me options */
-        .follow-me-options .option-button:nth-child(1) { background-color: #1877f2; } /* Facebook */
-        .follow-me-options .option-button:nth-child(2) { background-color: #e4405f; } /* Instagram */
-        .follow-me-options .option-button:nth-child(3) { background-color: #000000; } /* TikTok */
-        .follow-me-options .option-button:nth-child(4) { background-color: #1da1f2; } /* Twitter */
+             <div class="dropdown-container">
+                 <button class="contact-button main-button follow-me-button">Follow Me</button>
+                 <div class="options-container follow-me-options">
+                     <a href="https://www.facebook.com/profile.php?id=100089479186475" class="option-button">Facebook</a>
+                     <a href="https://www.instagram.com/cobu254?igsh=MzRlODBiNWFlZA==" class="option-button">Instagram</a>
+                     <a href="https://www.tiktok.com/@cobu19?lang=en-GB" class="option-button">TikTok</a>
+                     <a href="https://mobile.x.com/Cobutech155903" class="option-button">Twitter</a>
+                 </div>
+             </div>
 
-        /* Specific colors for Contact Me options */
-        .contact-me-options .option-button:nth-child(1) { background-color: #0088cc; } /* Telegram */
-        .contact-me-options .option-button:nth-child(2) { background-color: #25d366; } /* WhatsApp */
-        .contact-me-options .option-button:nth-child(3) { background-color: #d44638; } /* Gmail */
-        .contact-me-options .option-button:nth-child(4) { background-color: #000000; } /* Call (Generic dark) */
-    </style>
-</head>
-<body>
-    <div class="contact-container">
-        <h1>Contact Us</h1>
-        <div class="contact-buttons">
-            <div class="dropdown-container">
-                <button class="contact-button main-button follow-channels-button">Follow My Channels</button>
-                <p class="dropdown-description">Get updates from my channels.</p>
-                <div class="options-container follow-channels-options">
-                    <a href="https://whatsapp.com/channel/0029Vadx3PxJ3juvWsDlrN11" class="option-button">WhatsApp Channel <span class="option-description">Stay updated on WhatsApp</span></a>
-                    <a href="https://t.me/+-B6ymywjkJI5YmI8" class="option-button">Telegram Channel <span class="option-description">Join my Telegram broadcasts</span></a>
-                    <a href="YOUR_YOUTUBE_CHANNEL_LINK_HERE" class="option-button">YouTube Channel <span class="option-description">Watch videos on YouTube</span></a>
-                </div>
-            </div>
+             <div class="dropdown-container">
+                 <button class="contact-button main-button contact-me-button">Contact Me</button>
+                 <div class="options-container contact-me-options">
+                     <a href="https://t.me/obu254" class="option-button">Telegram Me</a>
+                     <a href="https://wa.me/254796281776" class="option-button">WhatsApp Me</a>
+                     <a href="mailto:calvinonyango700@gmail.com" class="option-button">Email</a>
+                     <a href="tel:+254796281776" class="option-button">Call Me</a>
+                 </div>
+             </div>
+         </div>
+     </div>
 
-            <div class="dropdown-container">
-                <button class="contact-button main-button follow-me-button">Follow Me</button>
-                 <p class="dropdown-description">Connect with me on social media.</p>
-                <div class="options-container follow-me-options">
-                    <a href="https://www.facebook.com/profile.php?id=100089479186475" class="option-button">Facebook <span class="option-description">Connect on Facebook</span></a>
-                    <a href="https://www.instagram.com/cobu254?igsh=MzRlODBiNWFlZA==" class="option-button">Instagram <span class="option-description">See my photos and videos</span></a>
-                    <a href="https://www.tiktok.com/@cobu19?lang=en-GB" class="option-button">TikTok <span class="option-description">Watch short-form videos</span></a>
-                    <a href="https://mobile.x.com/Cobutech155903" class="option-button">Twitter <span class="option-description">Follow my tweets</span></a>
-                </div>
-            </div>
+     <script>
+         const mainButtons = document.querySelectorAll('.contact-button.main-button');
+         const optionButtons = document.querySelectorAll('.option-button');
+         const optionContainers = document.querySelectorAll('.options-container');
 
-            <div class="dropdown-container">
-                <button class="contact-button main-button contact-me-button">Contact Me</button>
-                 <p class="dropdown-description">Direct contact options.</p>
-                <div class="options-container contact-me-options">
-                    <a href="https://t.me/obu254" class="option-button">Telegram Me <span class="option-description">Direct message on Telegram</span></a>
-                    <a href="https://wa.me/254796281776" class="option-button">WhatsApp Me <span class="option-description">Chat with me on WhatsApp</span></a>
-                    <a href="mailto:calvinonyango700@gmail.com" class="option-button">Email <span class="option-description">Send me an email</span></a>
-                    <a href="tel:+254796281776" class="option-button">Call Me <span class="option-description">Call me directly</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
+         function toggleOptions(optionsContainer) {
+             optionsContainer.classList.toggle('show');
+         }
 
-    <script>
-        const mainButtons = document.querySelectorAll('.contact-button.main-button');
-        const optionButtons = document.querySelectorAll('.option-button');
-        const optionContainers = document.querySelectorAll('.options-container');
+         mainButtons.forEach(button => {
+             button.addEventListener('click', function() {
+                 optionContainers.forEach(container => {
+                     if (container.classList.contains('show') && container.previousElementSibling !== this) {
+                         container.classList.remove('show');
+                     }
+                 });
+                 toggleOptions(this.nextElementSibling);
+                 this.classList.add('glowing');
+                 setTimeout(() => {
+                     this.classList.remove('glowing');
+                 }, 1000);
+             });
+         });
 
-        function toggleOptions(optionsContainer) {
-            optionsContainer.classList.toggle('show');
-        }
+         optionButtons.forEach(optionButton => {
+             optionButton.addEventListener('click', function() {
+                 this.classList.add('plasma-glow');
+                 setTimeout(() => {
+                     this.classList.remove('plasma-glow');
+                 }, 1000);
+             });
+         });
 
-        mainButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                optionContainers.forEach(container => {
-                     if (container.classList.contains('show') && container.previousElementSibling !== this.previousElementSibling) {
-                        container.classList.remove('show');
-                    }
-                });
-                toggleOptions(this.nextElementSibling.nextElementSibling); // Target the options container
-                this.classList.add('glowing');
-                setTimeout(() => {
-                    this.classList.remove('glowing');
-                }, 1000);
-            });
-        });
-
-        optionButtons.forEach(optionButton => {
-            optionButton.addEventListener('click', function() {
-                this.classList.add('plasma-glow');
-                setTimeout(() => {
-                    this.classList.remove('plasma-glow');
-                }, 1000);
-            });
-        });
-
-        // Close options if clicking outside
-        document.addEventListener('click', (event) => {
-            if (!event.target.closest('.dropdown-container')) {
-                optionContainers.forEach(container => container.classList.remove('show'));
-                mainButtons.forEach(button => button.classList.remove('glowing'));
-                optionButtons.forEach(button => button.classList.remove('plasma-glow'));
-            }
-        });
-    </script>
-</body>
-</html>
+         // Close options if clicking outside
+         document.addEventListener('click', (event) => {
+             if (!event.target.closest('.dropdown-container')) {
+                 optionContainers.forEach(container => container.classList.remove('show'));
+                 mainButtons.forEach(button => button.classList.remove('glowing'));
+                 optionButtons.forEach(button => button.classList.remove('plasma-glow'));
+             }
+         });
+     </script>
+ </body>
+ </html>

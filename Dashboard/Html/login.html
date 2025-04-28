@@ -9,6 +9,19 @@
          .password-step {
              display: none; /* Initially hidden */
          }
+         .forgot-password {
+             margin-top: 10px;
+             font-size: 0.9em;
+             color: #777;
+             text-align: right;
+         }
+         .forgot-password a {
+             color: #007bff;
+             text-decoration: none;
+         }
+         .forgot-password a:hover {
+             text-decoration: underline;
+         }
      </style>
  </head>
  <body>
@@ -28,6 +41,9 @@
                      <label for="login-password">Password:</label>
                      <input type="password" id="login-password" name="login-password" required>
                  </div>
+                 <div class="forgot-password">
+                     <a href="#">Forgot Password?</a>
+                 </div>
                  <button type="submit" class="login-button">Log In</button>
                  <button type="button" class="prev-button">Previous</button>
              </div>
@@ -41,6 +57,7 @@
          const nextButton = loginStep1.querySelector('.next-button');
          const prevButton = loginStep2.querySelector('.prev-button');
          const loginForm = document.getElementById('login-form');
+         const forgotPasswordLink = document.querySelector('.forgot-password a');
  
          nextButton.addEventListener('click', () => {
              loginStep1.style.display = 'none';
@@ -53,9 +70,14 @@
          });
  
          loginForm.addEventListener('submit', (event) => {
-             // Instead of redirecting to house.html, redirect to verification.html
              window.location.href = 'verification.html';
-             event.preventDefault(); // Prevent the default form submission for this example.
+             event.preventDefault();
+         });
+ 
+         forgotPasswordLink.addEventListener('click', (event) => {
+             // In a real application, this would likely redirect to a "Forgot Password" page.
+             alert('Forgot Password functionality will be implemented here.');
+             event.preventDefault();
          });
      </script>
  </body>
